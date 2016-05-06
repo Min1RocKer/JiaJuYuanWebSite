@@ -1,0 +1,83 @@
+//ajax数据交互
+var serverDomain = "http://192.168.1.20:8080";
+
+function postData(actionPath, jsonParam, successFunc, errorFunc) {
+	$.ajax({
+		url: serverDomain + actionPath,
+		data: JSON.stringify(jsonParam),
+		type: "post",
+		async: true,
+		dataType: "json",
+		success: function(msg) {
+			if (msg) {
+				if (successFunc) {
+					successFunc(msg);
+				}
+			}
+		},
+		error: function(msg) {
+			if (errorFunc) {
+				errorFunc(msg);
+			}
+		}
+	});
+}
+//返回顶部function1
+function toTop(obj) {
+	var timer = null;
+	obj.onclick = function() {
+		timer = setInterval(function() {
+			var topscroll = document.documentElement.scrollTop || document.body.scrollTop;
+			var speed = Math.floor(-topscroll / 5);
+			document.documentElement.scrollTop = document.body.scrollTop = topscroll + speed;
+			if (topscroll == 0) {
+				clearInterval(timer);
+			}
+		}, 100);
+	}
+}
+//返回顶部function2
+function pageScroll() {
+	//把内容滚动指定的像素数（第一个参数是向右滚动的像素数，第二个参数是向下滚动的像素数）
+	if (!+[1, ]) {
+		window.scrollBy(0, -40);
+		scrolldelay = setTimeout('pageScroll()', 5);
+		var sTop = document.documentElement.scrollTop + document.body.scrollTop;
+		if (sTop == 0) clearTimeout(scrolldelay);
+	}　　
+	else {
+		window.scrollBy(0, -10);
+		scrolldelay = setTimeout('pageScroll()', 5);
+		var sTop = document.documentElement.scrollTop + document.body.scrollTop;
+		if (sTop == 0) clearTimeout(scrolldelay);
+	}
+}
+//设置cookie
+function setCookie(c_name, value, expiredays) {　　　　
+	var exdate = new Date();　　　　
+	exdate.setDate(exdate.getDate() + expiredays);　　　　
+	document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());　　
+}
+//取cookie
+function getCookie(c_name) {　　　　
+	if (document.cookie.length > 0) {　　 //先查询cookie是否为空，为空就return ""	　　　　　　
+		c_start = document.cookie.indexOf(c_name + "=")　　 //通过String对象的indexOf()来检查这个cookie是否存在，不存在就为 -1　　
+			if (c_start != -1) {　　　　　　　　
+				c_start = c_start + c_name.length + 1;
+				c_end = document.cookie.indexOf(";", c_start)
+				if (c_end == -1) c_end = document.cookie.length　　　　　　　　　　
+				return unescape(document.cookie.substring(c_start, c_end)) //通过substring()得到了值。想了解unescape()得先知道escape()是做什么的，都是很重要的基础，想了解的可以搜索下，在文章结尾处也会进行讲解cookie编码细节						　　　　　　
+			}　　　　
+	}　　　　
+	return ""　　
+}　
+//删除cookie
+//删除cookies 
+function delCookie(name) 
+{ 
+    var exp = new Date(); 
+    exp.setTime(exp.getTime() - 1); 
+    var cval=getCookie(name); 
+    if(cval!=null) 
+    document.cookie= name + "="+cval+";expires="+exp.toGMTString(); 
+} 　
