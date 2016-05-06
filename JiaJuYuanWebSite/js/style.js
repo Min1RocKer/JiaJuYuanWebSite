@@ -1,50 +1,4 @@
 $(document).ready(function() {
-	//登录 注册
-	//登录标识的变化(根据是否登录来判断)
-	var userid = getCookie('userId');
-	if (userid) {
-		$('#logSuccess').css('display', 'block');
-		$('#logOrReg').css('display', 'none');
-	} else {
-		$('#logSuccess').css('display', 'none');
-		$('#logOrReg').css('display', 'block');
-	}
-	//退出
-	$('#logout').click(function() {
-			delCookie('userId');
-			delCookie('token');
-			window.location.reload();
-		})
-		//
-	var personal_aside_nav1 = $("#personal_aside_nav1");
-	var personal_aside_nav2 = $("#personal_aside_nav2");
-	personal_aside_nav1.click(function() {
-		$("#triangle2").css("display", "none");
-		$("#triangle1").css("display", "block");
-		personal_aside_nav1.css("top", "-12px");
-		personal_aside_nav2.css("top", "-12px");
-		personal_aside_nav1.css("background-color", "#b59983");
-		personal_aside_nav2.css("background-color", "#606060");
-		$("#personal_info").css("display", "block");
-		$("#my_news").css("display", "none");
-	});
-	personal_aside_nav2.click(function() {
-		$("#triangle1").css("display", "none");
-		$("#triangle2").css("display", "block");
-		personal_aside_nav1.css("top", "0");
-		personal_aside_nav2.css("top", "-12px");
-		personal_aside_nav1.css("background-color", "#606060");
-		personal_aside_nav2.css("background-color", "#b59983");
-		$("#personal_info").css("display", "none");
-		$("#my_news").css("display", "block");
-	});
-	$("#personal_info_changeBtn").click(function() {
-		$("#pages_icons1").css("display", "none");
-		$(".personal_info_right").css("display", "none");
-		$(".personal_info_right_change").css("display", "inline-block");
-		$("#personal_info_changeBtn").text("更新");
-	});
-
 	//回到顶部效果
 	$('#backTop').click(function() {
 			pageScroll();
@@ -121,41 +75,131 @@ $(document).ready(function() {
 				alert('登录失败');
 			});
 		})
-		//个人中心--修改用户信息
-//	$('#loginBtn').click(function() {
-//		var iskeep = document.getElementById("loginCheckbox").checked;
-//		//手机号判断
-//		var phone = $('#loginMobile').val();
-//		var re = /^1\d{10}$/;
-//		if (!re.test(phone) || phone.length == 0) {
-//			alert('请输入有效的手机号码！');
-//			return;
-//		}
-//		//验证码判断非空
-//		var verificationCode = $('#loginValidate').val();
-//		if (verificationCode.length == 0) {
-//			alert("验证码不能为空");
-//			return;
-//		}
-//		var userIdC = getCookie('userId');
-//		var token = getCookie('token');
-//		var postparam = {
-//			userId:userIdC,
-//			token:tokenC,
-//			username:
-//		};
-//		postData("/api/buyer/updatebuyerinfo", postparam, function(msg) {
-//			console.log(msg.result);
-//			if (iskeep) {
-//				setCookie('userId', msg.result.userid, 7);
-//				setCookie('token', msg.result.token, 7);
-//			} else {
-//				setCookie('userId', msg.result.userid);
-//				setCookie('token', msg.result.token);
-//			}
-//			window.location.href = 'index.html';
-//		}, function(msg) {
-//			alert('登录失败');
-//		});
-//	})
+		//登录标识的变化(根据是否登录来判断)
+	var userid = getCookie('userId');
+	if (userid) {
+		$('#logSuccess').css('display', 'block');
+		$('#logOrReg').css('display', 'none');
+	} else {
+		$('#logSuccess').css('display', 'none');
+		$('#logOrReg').css('display', 'block');
+	}
+	//退出登录
+	$('#logout').click(function() {
+			delCookie('userId');
+			delCookie('token');
+			window.location.reload();
+		})
+		//进入个人中心
+	$('#personCenter').click(function() {
+			window.location.href = 'personalCenter.html';
+		})
+		//个人中心-侧边导航框点击效果
+	var personal_aside_nav1 = $("#personal_aside_nav1");
+	var personal_aside_nav2 = $("#personal_aside_nav2");
+	personal_aside_nav1.click(function() {
+		$("#triangle2").css("display", "none");
+		$("#triangle1").css("display", "block");
+		personal_aside_nav1.css("background-color", "#b59983");
+		personal_aside_nav2.css("background-color", "#606060");
+		$("#personal_info").css("display", "block");
+		$("#personal_info .person_info_left").css("display", "inline-block");
+		$("#personal_info .personal_info_right").css("display", "inline-block");
+		$("#personal_info .personal_info_right_change").css("display", "none");
+		$("#personal_info_changeBtn").show();
+		$("#personal_info_update").hide();
+		$(".address").css('display', 'block');
+		$("#my_news").css("display", "none");
+	});
+	$("#personal_info_changeBtn").click(function() {
+		$("#pages_icons1").css("display", "none");
+		$(".personal_info_right").css("display", "none");
+		$(".personal_info_right_change").css("display", "inline-block");
+		$(".address").css('display', 'none');
+		$(this).hide();
+		$('#personal_info_update').show();
+	});
+	personal_aside_nav2.click(function() {
+		$("#triangle1").css("display", "none");
+		$("#triangle2").css("display", "block");
+		personal_aside_nav1.css("background-color", "#606060");
+		personal_aside_nav2.css("background-color", "#b59983");
+		$("#personal_info").css("display", "none");
+		$("#my_news").css("display", "block");
+	});
+
+	//	个人中心逻辑
+	//close
+	$('#vipinfo_modal_header i').click(function() {
+			$('#vipinfo_modal').hide();
+		})
+		//取消申请
+	$('#vipinfo_modal_cancel').click(function() {
+			$('#vipinfo_modal').hide();
+		})
+		//验证是否是认真商家
+	var officeId = $('#officeid').text()
+	var isVip = $('#isVip').text()
+	if (isVip == 1) {
+		$('#pages_icons1').css('display', 'inline-block');
+		$('#personal_info_changeBtn span').text("申请变更资料");
+		$('#personal_info_changeBtn').unbind('click');
+		$('#personal_info_changeBtn').click(function() {
+			$('#vipinfo_modal').show();
+		})
+	}
+	//用户申请变更资料
+	$('#vipinfo_modal_submit').click(function() {
+			var _reason = $('#vipinfo_modal_reason').val();
+			if (_reason.length == 0 || _reason == '请填写您的申请理由') {
+				alert('申请理由不能为空!');
+				return;
+			}
+			var _userid = getCookie('userId');
+			var _token = getCookie('token');
+			var postparam = {
+				"userId": _userid,
+				"token": _token,
+				"content": _reason
+			};
+			postData("/web/user/applyChangeInfo", postparam, function(msg) {
+				console.log(msg);
+				if (msg.code == 1 || msg.code == '1') {
+					alert('提交成功!');
+					$('#vipinfo_modal').hide();
+				}
+			}, function(msg) {
+				alert(msg.msg);
+			});
+		})
+		//	非认证用户修改个人信息
+	$('#personal_info_update').click(function() {
+		var _name = $('#personName').val();
+		var _officeName = $('#personofficeName').val();
+		var _industry = $('#personindustry').val();
+		if (_name.length == 0 || _officeName == 0 || _industry == 0) {
+			alert("请确保修改内容不为空!");
+			return;
+		}
+		var _userid = getCookie('userId');
+		var _token = getCookie('token');
+		var _officeid = $('#officeid').text();
+		var postparam = {
+			"userId": _userid,
+			"token": _token,
+			"username": _name,
+			"industry": _industry,
+			"officeid": _officeid,
+			"officename": _officeName
+		};
+		postData("/web/user/infoEdit", postparam, function(msg) {
+			console.log(msg);
+			if (msg.code == 1 || msg.code == '1') {
+				alert('提交成功!');
+				window.location.reload();
+			}
+		}, function(msg) {
+			alert(msg.msg);
+		});
+	})
 })

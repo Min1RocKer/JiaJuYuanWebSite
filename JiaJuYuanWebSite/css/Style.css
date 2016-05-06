@@ -10,6 +10,9 @@ hr{
 label{
   font-weight: normal!important;
 }
+#isVip,#officeid{
+	display: none;
+}
 /*头部样式*/
 body{
 	padding:0;
@@ -553,12 +556,12 @@ footer{
 /*****联系我们页面end********/
 /*****个人中心页面start********/
 .triangle-right1 {
-    position: relative;
+    position: absolute;
     top: 16px;
     left: 100%;  
 }
 .triangle-right2 {
-    position: relative;
+    position: absolute;
     top: 16px;
     left: 100%;
     display: none;
@@ -596,19 +599,16 @@ footer{
   border: 1px solid #e5e5e5;
 }
 .personal_aside_nav1{
-  background-color: #b59983;
-  position: relative;
-  top:-12px;
-  left: 0;
+  background-color: #b59983; 
 }
 .personal_aside_nav2{
   background-color: #606060; 
-  position: relative;
-  top:-12px;
-  left: 0;
 }
 .personal_aside_nav1,
-.personal_aside_nav2{
+.personal_aside_nav2{ 
+  position: relative;
+  top:0;
+  left: 0;
   height: 44px;
   border-bottom: 1px solid #ffffff;
   line-height: 44px;
@@ -647,8 +647,11 @@ footer{
   float: right;
   margin-right: 10%;
   position: relative;
-  top: -100px;
+  top: -45px;
   cursor: pointer;
+}
+#personal_info_update{
+	display: none;
 }
 .personal_info_changeBtn:hover{
   background-color: #c45b1a;
@@ -674,6 +677,8 @@ footer{
   position: relative;
   top: 10px;
   left: 10px;
+  display: none;
+  cursor: pointer;
 }
 .pages_icons2{
   width: 32px;
@@ -741,6 +746,7 @@ footer{
   position: relative;
   top: 0;
   left: 2%;
+  cursor: pointer;
 }
 .my_info_delete:hover{
   background-color: #4a4949;
@@ -756,6 +762,112 @@ footer{
   left: -5.5%;
 }
 /*****个人中心页面end********/
+/*****个人中心弹出框页面start********/
+.vipinfo_modal{
+  position:absolute;
+  top:48%;
+  left:40%;
+  z-index: 9999;
+  width: 532px;
+  height: 286px;
+  display: none;
+}
+.vipinfo_modal_bg{
+  background-color: #000000;
+  opacity: .15;
+  filter: alpha(opacity=15%);
+  filter: progid:DXImageTransform.Microsoft.Alpha(opacity=15);
+  width: 552px;
+  height: 306px;
+  position: relative;
+  top: -13px;
+  left: -10px;
+  border-radius: 5px;
+}
+.vipinfo_modal_content,
+.vipinfo_modal_header{
+  position:relative;
+  top:-108%;
+  left:0;
+}
+.vipinfo_modal_header{
+  font-size: 16px;
+  color: #333333;
+  width: 532px;
+  height: 46px;
+  padding-left: 12px;
+  line-height: 46px;
+  padding-right: 12px;
+  background-color: #f2f2f2;
+}
+.vipinfo_modal_header i{
+  position: relative;
+  top: 7px;
+  float: right;
+  display: block;
+  width: 32px;
+  height: 32px;
+  background: url("../images/pages_icons.png");
+  background-position: 0 87%;
+  cursor: pointer;
+}
+.vipinfo_modal_header i:hover{
+  background-position: 0 99.8%;
+}
+.vipinfo_modal_content{
+  height: 240px;
+  width: 532px;
+  background-color: #e5e5e5;
+}
+.vipinfo_modal_content label{
+  position: relative;
+  display: block;
+  top: 20px;
+  left: 23px;
+  font-size: 14px;
+  color: #333333;
+}
+.vipinfo_modal_content textarea{
+  position: relative;
+  top: 26px;
+  left: 23px;
+  width: 480px;
+  height: 65px;
+  font-size: 14px;
+  color: #777777;
+  background-color: #ffffff;
+  border: 1px solid #a7a7a7;
+}
+.vipinfo_modal_content .vipinfo_modal_submit,
+.vipinfo_modal_content .vipinfo_modal_cancel{
+  width: 190px;
+  height: 46px;
+  font-size: 16px;
+  color: #ffffff;  
+  text-align: center;
+  line-height: 46px;
+  display: inline-block;
+  position: relative;
+  top: 60px;
+  left: 65px;
+}
+.vipinfo_modal_content .vipinfo_modal_cancel{
+  background-color: #606060;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.vipinfo_modal_content .vipinfo_modal_cancel:hover{
+  background-color: #484848;
+}
+.vipinfo_modal_content .vipinfo_modal_submit{
+  background-color: #df7839;
+  cursor: pointer;
+}
+.vipinfo_modal_content .vipinfo_modal_submit:hover{
+  background-color: #c45b1a;
+}
+
+/*****个人中心弹出框页面end********/
 /*****抢花色页面start********/
 .grab_main{
   position: relative;
