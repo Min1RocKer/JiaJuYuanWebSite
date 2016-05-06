@@ -72,7 +72,6 @@ function getCookie(c_name) {　　　　
 	return ""　　
 }　
 //删除cookie
-//删除cookies 
 function delCookie(name) 
 { 
     var exp = new Date(); 

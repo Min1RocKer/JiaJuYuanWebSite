@@ -10,12 +10,12 @@ $(document).ready(function() {
 		$('#logOrReg').css('display', 'block');
 	}
 	//退出
-	$('#logout').click(function(){
-		delCookie('userId');
-		delCookie('token');
-		window.location.reload();
-	})
-	//
+	$('#logout').click(function() {
+			delCookie('userId');
+			delCookie('token');
+			window.location.reload();
+		})
+		//
 	var personal_aside_nav1 = $("#personal_aside_nav1");
 	var personal_aside_nav2 = $("#personal_aside_nav2");
 	personal_aside_nav1.click(function() {
@@ -49,7 +49,7 @@ $(document).ready(function() {
 	$('#backTop').click(function() {
 			pageScroll();
 		})
-		//	//获取验证码
+		//获取验证码
 	var countdown = 60;
 
 	function settime(val) {
@@ -88,38 +88,74 @@ $(document).ready(function() {
 		})
 		//用户登录
 	$('#loginBtn').click(function() {
-		var iskeep = document.getElementById("loginCheckbox").checked;
-		//手机号判断
-		var phone = $('#loginMobile').val();
-		var re = /^1\d{10}$/;
-		if (!re.test(phone) || phone.length == 0) {
-			alert('请输入有效的手机号码！');
-			return;
-		}
-		//验证码判断非空
-		var verificationCode = $('#loginValidate').val();
-		if (verificationCode.length == 0) {
-			alert("验证码不能为空");
-			return;
-		}
-		var postparam = {
-			"loginname": phone,
-			"validatecode": verificationCode,
-			"plat": '3'
-		};
-		postData("/user/login/validCodeLogin", postparam, function(msg) {
-			console.log(msg.result);
-			if (iskeep) {
-				setCookie('userId', msg.result.userid, 7);
-				setCookie('token', msg.result.token, 7);
-			} else {
-				setCookie('userId', msg.result.userid);
-				setCookie('token', msg.result.token);
+			var iskeep = document.getElementById("loginCheckbox").checked;
+			//手机号判断
+			var phone = $('#loginMobile').val();
+			var re = /^1\d{10}$/;
+			if (!re.test(phone) || phone.length == 0) {
+				alert('请输入有效的手机号码！');
+				return;
 			}
-			window.location.href = 'index.html';
-		}, function(msg) {
-			alert('登录失败');
-		});
-		//enter键
-	})
+			//验证码判断非空
+			var verificationCode = $('#loginValidate').val();
+			if (verificationCode.length == 0) {
+				alert("验证码不能为空");
+				return;
+			}
+			var postparam = {
+				"loginname": phone,
+				"validatecode": verificationCode,
+				"plat": '3'
+			};
+			postData("/user/login/validCodeLogin", postparam, function(msg) {
+				console.log(msg.result);
+				if (iskeep) {
+					setCookie('userId', msg.result.userid, 7);
+					setCookie('token', msg.result.token, 7);
+				} else {
+					setCookie('userId', msg.result.userid);
+					setCookie('token', msg.result.token);
+				}
+				window.location.href = 'index.html';
+			}, function(msg) {
+				alert('登录失败');
+			});
+		})
+		//个人中心--修改用户信息
+//	$('#loginBtn').click(function() {
+//		var iskeep = document.getElementById("loginCheckbox").checked;
+//		//手机号判断
+//		var phone = $('#loginMobile').val();
+//		var re = /^1\d{10}$/;
+//		if (!re.test(phone) || phone.length == 0) {
+//			alert('请输入有效的手机号码！');
+//			return;
+//		}
+//		//验证码判断非空
+//		var verificationCode = $('#loginValidate').val();
+//		if (verificationCode.length == 0) {
+//			alert("验证码不能为空");
+//			return;
+//		}
+//		var userIdC = getCookie('userId');
+//		var token = getCookie('token');
+//		var postparam = {
+//			userId:userIdC,
+//			token:tokenC,
+//			username:
+//		};
+//		postData("/api/buyer/updatebuyerinfo", postparam, function(msg) {
+//			console.log(msg.result);
+//			if (iskeep) {
+//				setCookie('userId', msg.result.userid, 7);
+//				setCookie('token', msg.result.token, 7);
+//			} else {
+//				setCookie('userId', msg.result.userid);
+//				setCookie('token', msg.result.token);
+//			}
+//			window.location.href = 'index.html';
+//		}, function(msg) {
+//			alert('登录失败');
+//		});
+//	})
 })
