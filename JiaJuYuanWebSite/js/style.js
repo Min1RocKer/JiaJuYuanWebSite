@@ -1,11 +1,54 @@
 $(document).ready(function() {
+	//侧边导航框点击效果
+	var personal_aside_nav1 = $("#personal_aside_nav1");
+	var personal_aside_nav2 = $("#personal_aside_nav2");
+	var index_desinav_new = $("#index_desinav_new");
+	var index_desinav_classic = $("#index_desinav_classic");
+	personal_aside_nav1.click(function() {
+		$("#triangle2").css("display", "none");
+		$("#triangle1").css("display", "block");
+		personal_aside_nav1.css("background-color", "#b59983");
+		personal_aside_nav2.css("background-color", "#606060");
+		$("#personal_info").css("display", "block");
+		$("#my_news").css("display", "none");
+	});
+	personal_aside_nav2.click(function() {
+		$("#triangle1").css("display", "none");
+		$("#triangle2").css("display", "block");
+		personal_aside_nav1.css("background-color", "#606060");
+		personal_aside_nav2.css("background-color", "#b59983");
+		$("#personal_info").css("display", "none");
+		$("#my_news").css("display", "block");
+	});
+	$("#personal_info_changeBtn").click(function() {
+		$("#pages_icons1").css("display", "none");
+		$(".personal_info_right").css("display", "none");
+		$(".personal_info_right_change").css("display", "inline-block");
+		$("#personal_info_changeBtn").text("更新");
+	});
+	index_desinav_new.click(function(){
+		index_desinav_new.css("background-color","#f6edda");
+		index_desinav_new.css("border","1px solid #b59983");
+		index_desinav_classic.css("background-color","#f5f4f4");
+		index_desinav_classic.css("border","1px solid #d7d7d7");
+		$("#triangle_new").css("display","block");
+		$("#triangle_classic").css("display","none");
+	});
+	index_desinav_classic.click(function(){
+		index_desinav_new.css("background-color","#f5f4f4");
+		index_desinav_new.css("border","1px solid #d7d7d7");
+		index_desinav_classic.css("background-color","#f6edda");
+		index_desinav_classic.css("border","1px solid #b59983");
+		$("#triangle_new").css("display","none");
+		$("#triangle_classic").css("display","block");
+	});
+
 	//回到顶部效果
 	$('#backTop').click(function() {
 			pageScroll();
 		})
 		//获取验证码
 	var countdown = 60;
-
 	function settime(val) {
 		if (countdown == 0) {
 			val.value = "获取验证码";
@@ -40,7 +83,7 @@ $(document).ready(function() {
 				console.log(msg);
 			});
 		})
-		//用户登录
+	//用户登录
 	$('#loginBtn').click(function() {
 			var iskeep = document.getElementById("loginCheckbox").checked;
 			//手机号判断
@@ -75,7 +118,7 @@ $(document).ready(function() {
 				alert('登录失败');
 			});
 		})
-		//登录标识的变化(根据是否登录来判断)
+	//登录标识的变化(根据是否登录来判断)
 	var userid = getCookie('userId');
 	if (userid) {
 		$('#logSuccess').css('display', 'block');
@@ -89,10 +132,6 @@ $(document).ready(function() {
 			delCookie('userId');
 			delCookie('token');
 			window.location.reload();
-		})
-		//进入个人中心
-	$('#personCenter').click(function() {
-			window.location.href = 'personalCenter.html';
 		})
 		//个人中心-侧边导航框点击效果
 	var personal_aside_nav1 = $("#personal_aside_nav1");
