@@ -219,11 +219,10 @@ $(document).ready(function() {
 	if (ml > 12) {
 		for (var msgl = 0; msgl < 12; msgl++) {
 			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
-			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><label class=\"latest_list_name\">" + menudetail[msgl].title + "</label>";
-			var msgcon2 = "<div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div>";
-			var msgcon4 = "<div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div></div>";
-			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3 + msgcon4);
+			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
+			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].title + "</label><div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
+			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div></div>";
+			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
 		}
 		//分页逻辑	
 		var pageCount = Math.ceil(ml / 12);
@@ -246,11 +245,10 @@ $(document).ready(function() {
 	} else {
 		for (var msgl = 0; msgl < ml; msgl++) {
 			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
-			var msgcon1 = "<img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><label class=\"latest_list_name\">" + menudetail[msgl].title + "</label>";
-			var msgcon2 = "<div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div>";
-			var msgcon4 = "<div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
-			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3 + msgcon4);
+			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
+			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].title + "</label><div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
+			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div></div>";
+			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
 			$('.checkdetail').bind({
 				mouseover: function(e) {
 					$(this).children('.latest_list_mouseover').show();
@@ -290,7 +288,7 @@ $(document).ready(function() {
 			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
 		}
 	}
-	//查看大图通用事件
+	//查看大图通用点击事件
 	$('.latest_list_mouseover').click(function() {
 		var imgurl = $(this).parent().children('.latest_list_image').attr('src');
 		window.location.href = "viewBigImage.html?img=" + imgurl + "";

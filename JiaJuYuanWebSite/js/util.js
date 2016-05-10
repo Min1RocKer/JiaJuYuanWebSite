@@ -97,6 +97,9 @@ var menuJson = [{
 		'MenuName': '三胺纸',
 		'MenuId': '01',
 		'SubMenu': [{
+			'subname': '全部',
+			'subId': 'all'
+		}, {
 			'subname': '木门',
 			'subId': '01-1'
 		}, {
@@ -111,7 +114,28 @@ var menuJson = [{
 		}]
 	}, {
 		'MenuName': 'PVC',
-		'MenuId': '02'
+		'MenuId': '02',
+		'SubMenu' :[
+			{
+				'subname': '全部',
+				'subId': 'all'
+			},
+			{
+				'subname': '木门',
+				'subId': '01-1'
+			},
+			{
+				'subname': '橱柜',
+				'subId': '01-2'
+			},
+			{
+				'subname': '地板',
+				'subId': '01-3'
+			},
+			{
+				'subname': '其他',
+				'subId': '01-3'
+			}]
 	}]
 	//
 var menudetail = [{
