@@ -62,21 +62,301 @@ function setCookie(c_name, value, expiredays) {　　　　
 function getCookie(c_name) {　　　　
 	if (document.cookie.length > 0) {　　 //先查询cookie是否为空，为空就return ""	　　　　　　
 		c_start = document.cookie.indexOf(c_name + "=")　　 //通过String对象的indexOf()来检查这个cookie是否存在，不存在就为 -1　　
-			if (c_start != -1) {　　　　　　　　
-				c_start = c_start + c_name.length + 1;
-				c_end = document.cookie.indexOf(";", c_start)
-				if (c_end == -1) c_end = document.cookie.length　　　　　　　　　　
-				return unescape(document.cookie.substring(c_start, c_end)) //通过substring()得到了值。想了解unescape()得先知道escape()是做什么的，都是很重要的基础，想了解的可以搜索下，在文章结尾处也会进行讲解cookie编码细节						　　　　　　
-			}　　　　
+		if (c_start != -1) {　　　　　　　　
+			c_start = c_start + c_name.length + 1;
+			c_end = document.cookie.indexOf(";", c_start)
+			if (c_end == -1) c_end = document.cookie.length　　　　　　　　　　
+			return unescape(document.cookie.substring(c_start, c_end)) //通过substring()得到了值。想了解unescape()得先知道escape()是做什么的，都是很重要的基础，想了解的可以搜索下，在文章结尾处也会进行讲解cookie编码细节						　　　　　　
+		}　　　　
 	}　　　　
 	return ""　　
 }　
 //删除cookie
-function delCookie(name) 
-{ 
-    var exp = new Date(); 
-    exp.setTime(exp.getTime() - 1); 
-    var cval=getCookie(name); 
-    if(cval!=null) 
-    document.cookie= name + "="+cval+";expires="+exp.toGMTString(); 
-} 　
+function delCookie(name) {
+	var exp = new Date();
+	exp.setTime(exp.getTime() - 1);
+	var cval = getCookie(name);
+	if (cval != null)
+		document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+}
+//从url中取参数
+function GetRequest() {
+	var url = location.search; //获取url中"?"符后的字串
+	var theRequest = new Object();
+	if (url.indexOf("?") != -1) {
+		var str = url.substr(1);
+		strs = str.split("&");
+		for (var i = 0; i < strs.length; i++) {
+			theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+		}
+	}
+	return theRequest;
+}
+//模拟接口数据
+var menuJson = [{
+		'MenuName': '三胺纸',
+		'MenuId': '01',
+		'SubMenu': [{
+			'subname': '木门',
+			'subId': '01-1'
+		}, {
+			'subname': '橱柜',
+			'subId': '01-2'
+		}, {
+			'subname': '地板',
+			'subId': '01-3'
+		}, {
+			'subname': '其他',
+			'subId': '01-3'
+		}]
+	}, {
+		'MenuName': 'PVC',
+		'MenuId': '02'
+	}]
+	//
+var menudetail = [{
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}, {
+	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+	"title": "呵呵哒!",
+	"companyname": "moekee",
+	"type": "木门"
+}]

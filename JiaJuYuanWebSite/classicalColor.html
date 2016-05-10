@@ -43,7 +43,7 @@
 							<li role="presentation" class="active col-md-20 col-sm-20 col-xs-140"><a title="首页" ref="bookmark" href="index.html">首页</a></li>
 							<li role="presentation" class="col-md-20 col-sm-20 col-xs-140"><a class="active-color" title="花色汇" ref="bookmark" href="#">花色汇</a>
 								<ul class="sub-menu">
-				                  <li><a title="最新花色" ref="bookmark" href="classicalColor.html" class="line">最新花色</a></li>
+				                  <li><a title="最新花色" ref="bookmark" href="latestColor.html" class="line">最新花色</a></li>
 				                  <li><a title="经典花色" ref="bookmark" href="classicalColor.html" class="line">经典花色</a></li>
 				                  <li><a title="找花色" ref="bookmark" href="discover.html" class="line">找花色</a></li>
 				                  <li><a title="抢花色" ref="bookmark" href="grab.html">抢花色</a></li>
@@ -74,42 +74,46 @@
 				<div class="col-xs-140 classical_content">
 					<div class="container">
 						<div class="row">
-							<!--**************经典花色列表****************-->
+							<!--**************经典花色搜索****************-->
 							<div class="col-xs-140 classical_content_search">
 								<div class="container-fluid">
 									<div class="row">
-								
+										<div class="col-xs-110 pull-left">
+											<div class="classical_searchbox">
+												<input type="text">
+												<label>搜索公司</label>
+												<div class="classical_searchbox_icon"><i></i></div>												
+											</div>
+										</div>
+										<div class="col-xs-20 pull-right">
+											<div class="classical_searchColor">查看花色新品</div>
+										</div>
 									</div>
 								</div>
 							</div>
 							<!--**************经典花色列表****************-->
 							<div class="col-xs-140 classical_content_main">
 								<div class="container-fluid">
-									<div class="row">
-								
+									<div id="classicalMsgArea" class="row">
+										<!--<div class="classical_list col-xs-140">
+											<img class="classical_list_image" src="http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg" alt="classicalColor" />
+											<p class="classical_company">杭州天元诚达装饰材料有限公司</p>
+											<div class="classical_list_label">橱柜</div>
+											<div class="classical_more">查看详情</div>
+										</div>-->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					<div id="backTop" class="backTop"></div>
+					<!--分页-->
+					<div class="divide-page">
+						<ul class="pagination morepage" id="classical_morepage">
+						</ul>
+					</div>
+				</div>	
 			</div>
-			<!--分页-->
-			<div class="divide-page">
-				<ul class="pagination morepage">
-					<li><a href="#" class="first"></a></li>
-					<li><a href="#" class="pre"></a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">5</a></li>
-					<li class='pagecount'><span>共</span><span id="totalPage"></span><span>页</span></li>
-					<li><a href="#" class="next"></a></li>
-					<li><a href="#" class="last"></a></li>
-				</ul>
-			</div>
-			<div id="backTop" class="backTop"></div>
 		</article>
 		<footer>Copyright © 2015-2016 jjyapp.com 小雅科技 浙ICP备15024844号</footer>
 	</body>

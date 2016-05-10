@@ -199,188 +199,6 @@ $(document).ready(function() {
 			});
 		})
 		//花色汇-最新花色
-	var menuJson = [{
-			'MenuName': '三胺纸',
-			'MenuId': '01',
-			'SubMenu': [{
-				'subname': '木门',
-				'subId': '01-1'
-			}, {
-				'subname': '橱柜',
-				'subId': '01-2'
-			}, {
-				'subname': '地板',
-				'subId': '01-3'
-			}, {
-				'subname': '其他',
-				'subId': '01-3'
-			}]
-		}, {
-			'MenuName': 'PVC',
-			'MenuId': '02'
-		}]
-		//
-	var menudetail = [{
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		},{"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}, {
-			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-			"title": "呵呵哒!",
-			"companyname": "moekee",
-			"type": "木门"
-		}]
-		//动态生成 菜单
 	for (var mainl = 0; mainl < menuJson.length; mainl++) {
 		var menuStr = "<div class=\"col-xs-140\">\<div id=\"latest_aside_nav\" class=\"latest_aside_nav col-xs-140\" >" + menuJson[mainl].MenuName + "</div></div>";
 		var subm = '';
@@ -393,38 +211,92 @@ $(document).ready(function() {
 		var content = menuStr + subm;
 		$('#latestMenuArea').append(content);
 	}
+	//调用花色汇==》最新花色 菜单切换效果
 	subnavClick();
-	//动态生成资讯内容
-	var ml = menudetail.length
+
+	//动态生成最新花色内容
+	var ml = menudetail.length;
 	if (ml > 12) {
 		for (var msgl = 0; msgl < 12; msgl++) {
 			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
-			var msgcon1 = "<img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><label class=\"latest_list_name\">" + menudetail[msgl].title + "</label>";
+			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><label class=\"latest_list_name\">" + menudetail[msgl].title + "</label>";
 			var msgcon2 = "<div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div>";
-			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
+			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div>";
+			var msgcon4 = "<div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div></div>";
+			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3 + msgcon4);
 		}
 		//分页逻辑	
 		var pageCount = Math.ceil(ml / 12);
-//		console.log(pageCount);
 		var dividePagehStr = "<li><a href=\"#\" class=\"first\"></a></li><li><a href=\"#\" class=\"pre\"></a></li>";
 		var divideTailStr = "<li><a href=\"#\" class=\"next\"></a></li><li><a href=\"#\" class=\"last\"></a></li>";
-		var totalStr = "<li class=\"pagecount\"><span>共</span><span id=\"totalPage\">"+pageCount+"</span><span>页</span></li>"
+		var totalStr = "<li class=\"pagecount\"><span>共</span><span id=\"totalPage\">" + pageCount + "</span><span>页</span></li>"
 		var content = "";
-		for(var i=1;i<pageCount+1;i++){
-			content +="<li><a href=\"#\">"+i+"</a></li>";
+		for (var i = 1; i < pageCount + 1; i++) {
+			content += "<li><a href=\"#\">" + i + "</a></li>";
 		}
-		$('#morepage').append(dividePagehStr+content+totalStr+divideTailStr);
+		$('#morepage').append(dividePagehStr + content + totalStr + divideTailStr);
+		$('.checkdetail').bind({
+			mouseover: function(e) {
+				$(this).children('.latest_list_mouseover').show();
+			},
+			mouseout: function(e) {
+				$(this).children('.latest_list_mouseover').hide();
+			}
+		})
 	} else {
 		for (var msgl = 0; msgl < ml; msgl++) {
 			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
 			var msgcon1 = "<img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><label class=\"latest_list_name\">" + menudetail[msgl].title + "</label>";
 			var msgcon2 = "<div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div>";
-			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
+			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div>";
+			var msgcon4 = "<div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
+			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3 + msgcon4);
+			$('.checkdetail').bind({
+				mouseover: function(e) {
+					$(this).children('.latest_list_mouseover').show();
+				},
+				mouseout: function(e) {
+					$(this).children('.latest_list_mouseover').hide();
+				}
+			})
 		}
 	}
+	//动态生成经典花色内容
+	if (ml > 12) {
+		for (var msgl = 0; msgl < 12; msgl++) {
+			var msgStr = "<div class=\"classical_list col-xs-140\">";
+			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"classicalColor\" />";
+			var msgcon2 = "<p class=\"classical_company\">" + menudetail[msgl].companyname + "</p>";
+			var msgcon3 = "<div class=\"classical_list_label\">" + menudetail[msgl].type + "</div><div class=\"classical_more\">查看详情</div></div>";
+			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
+		}
+		//分页逻辑	
+		var pageCount = Math.ceil(ml / 12);
+		//console.log(pageCount);
+		var dividePagehStr = "<li><a href=\"#\" class=\"first\"></a></li><li><a href=\"#\" class=\"pre\"></a></li>";
+		var divideTailStr = "<li><a href=\"#\" class=\"next\"></a></li><li><a href=\"#\" class=\"last\"></a></li>";
+		var totalStr = "<li class=\"pagecount\"><span>共</span><span id=\"totalPage\">" + pageCount + "</span><span>页</span></li>"
+		var content = "";
+		for (var i = 1; i < pageCount + 1; i++) {
+			content += "<li><a href=\"#\">" + i + "</a></li>";
+		}
+		$('#classical_morepage').append(dividePagehStr + content + totalStr + divideTailStr);
+	} else {
+		for (var msgl = 0; msgl < ml; msgl++) {
+			var msgStr = "<div class=\"classical_list col-xs-140\">";
+			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"classicalColor\" />";
+			var msgcon2 = "<p class=\"classical_company\">" + menudetail[msgl].companyname + "</p>";
+			var msgcon3 = "<div class=\"classical_list_label\">" + menudetail[msgl].type + "</div><div class=\"classical_more\">查看详情</div></div>";
+			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
+		}
+	}
+	//查看大图通用事件
+	$('.latest_list_mouseover').click(function() {
+		var imgurl = $(this).parent().children('.latest_list_image').attr('src');
+		window.location.href = "viewBigImage.html?img=" + imgurl + "";
+	})
 });
+
 //花色汇==》最新花色 菜单切换效果
 function subnavClick() {
 	var latest_aside_subnav = $(".latest_aside_subnav");
