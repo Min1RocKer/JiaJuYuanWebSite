@@ -1,54 +1,11 @@
 $(document).ready(function() {
-	//侧边导航框点击效果
-	var personal_aside_nav1 = $("#personal_aside_nav1");
-	var personal_aside_nav2 = $("#personal_aside_nav2");
-	var index_desinav_new = $("#index_desinav_new");
-	var index_desinav_classic = $("#index_desinav_classic");
-	personal_aside_nav1.click(function() {
-		$("#triangle2").css("display", "none");
-		$("#triangle1").css("display", "block");
-		personal_aside_nav1.css("background-color", "#b59983");
-		personal_aside_nav2.css("background-color", "#606060");
-		$("#personal_info").css("display", "block");
-		$("#my_news").css("display", "none");
-	});
-	personal_aside_nav2.click(function() {
-		$("#triangle1").css("display", "none");
-		$("#triangle2").css("display", "block");
-		personal_aside_nav1.css("background-color", "#606060");
-		personal_aside_nav2.css("background-color", "#b59983");
-		$("#personal_info").css("display", "none");
-		$("#my_news").css("display", "block");
-	});
-	$("#personal_info_changeBtn").click(function() {
-		$("#pages_icons1").css("display", "none");
-		$(".personal_info_right").css("display", "none");
-		$(".personal_info_right_change").css("display", "inline-block");
-		$("#personal_info_changeBtn").text("更新");
-	});
-	index_desinav_new.click(function(){
-		index_desinav_new.css("background-color","#f6edda");
-		index_desinav_new.css("border","1px solid #b59983");
-		index_desinav_classic.css("background-color","#f5f4f4");
-		index_desinav_classic.css("border","1px solid #d7d7d7");
-		$("#triangle_new").css("display","block");
-		$("#triangle_classic").css("display","none");
-	});
-	index_desinav_classic.click(function(){
-		index_desinav_new.css("background-color","#f5f4f4");
-		index_desinav_new.css("border","1px solid #d7d7d7");
-		index_desinav_classic.css("background-color","#f6edda");
-		index_desinav_classic.css("border","1px solid #b59983");
-		$("#triangle_new").css("display","none");
-		$("#triangle_classic").css("display","block");
-	});
-
 	//回到顶部效果
 	$('#backTop').click(function() {
 			pageScroll();
 		})
 		//获取验证码
 	var countdown = 60;
+
 	function settime(val) {
 		if (countdown == 0) {
 			val.value = "获取验证码";
@@ -83,7 +40,7 @@ $(document).ready(function() {
 				console.log(msg);
 			});
 		})
-	//用户登录
+		//用户登录
 	$('#loginBtn').click(function() {
 			var iskeep = document.getElementById("loginCheckbox").checked;
 			//手机号判断
@@ -118,7 +75,7 @@ $(document).ready(function() {
 				alert('登录失败');
 			});
 		})
-	//登录标识的变化(根据是否登录来判断)
+		//登录标识的变化(根据是否登录来判断)
 	var userid = getCookie('userId');
 	if (userid) {
 		$('#logSuccess').css('display', 'block');
@@ -213,32 +170,269 @@ $(document).ready(function() {
 		})
 		//	非认证用户修改个人信息
 	$('#personal_info_update').click(function() {
-		var _name = $('#personName').val();
-		var _officeName = $('#personofficeName').val();
-		var _industry = $('#personindustry').val();
-		if (_name.length == 0 || _officeName == 0 || _industry == 0) {
-			alert("请确保修改内容不为空!");
-			return;
-		}
-		var _userid = getCookie('userId');
-		var _token = getCookie('token');
-		var _officeid = $('#officeid').text();
-		var postparam = {
-			"userId": _userid,
-			"token": _token,
-			"username": _name,
-			"industry": _industry,
-			"officeid": _officeid,
-			"officename": _officeName
-		};
-		postData("/web/user/infoEdit", postparam, function(msg) {
-			console.log(msg);
-			if (msg.code == 1 || msg.code == '1') {
-				alert('提交成功!');
-				window.location.reload();
+			var _name = $('#personName').val();
+			var _officeName = $('#personofficeName').val();
+			var _industry = $('#personindustry').val();
+			if (_name.length == 0 || _officeName == 0 || _industry == 0) {
+				alert("请确保修改内容不为空!");
+				return;
 			}
-		}, function(msg) {
-			alert(msg.msg);
-		});
-	})
-})
+			var _userid = getCookie('userId');
+			var _token = getCookie('token');
+			var _officeid = $('#officeid').text();
+			var postparam = {
+				"userId": _userid,
+				"token": _token,
+				"username": _name,
+				"industry": _industry,
+				"officeid": _officeid,
+				"officename": _officeName
+			};
+			postData("/web/user/infoEdit", postparam, function(msg) {
+				console.log(msg);
+				if (msg.code == 1 || msg.code == '1') {
+					alert('提交成功!');
+					window.location.reload();
+				}
+			}, function(msg) {
+				alert(msg.msg);
+			});
+		})
+		//花色汇-最新花色
+	var menuJson = [{
+			'MenuName': '三胺纸',
+			'MenuId': '01',
+			'SubMenu': [{
+				'subname': '木门',
+				'subId': '01-1'
+			}, {
+				'subname': '橱柜',
+				'subId': '01-2'
+			}, {
+				'subname': '地板',
+				'subId': '01-3'
+			}, {
+				'subname': '其他',
+				'subId': '01-3'
+			}]
+		}, {
+			'MenuName': 'PVC',
+			'MenuId': '02'
+		}]
+		//
+	var menudetail = [{
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		},{"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}, {
+			"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+			"title": "呵呵哒!",
+			"companyname": "moekee",
+			"type": "木门"
+		}]
+		//动态生成 菜单
+	for (var mainl = 0; mainl < menuJson.length; mainl++) {
+		var menuStr = "<div class=\"col-xs-140\">\<div id=\"latest_aside_nav\" class=\"latest_aside_nav col-xs-140\" >" + menuJson[mainl].MenuName + "</div></div>";
+		var subm = '';
+		if (menuJson[mainl].SubMenu) {
+			for (var subl = 0; subl < menuJson[mainl].SubMenu.length; subl++) {
+				subm += "<div class=\"col-xs-140\"><div class=\"triangle\">" +
+					"</div><div class=\"latest_aside_subnav col-xs-140\">" + menuJson[mainl].SubMenu[subl].subname + "</div></div>"
+			}
+		}
+		var content = menuStr + subm;
+		$('#latestMenuArea').append(content);
+	}
+	subnavClick();
+	//动态生成资讯内容
+	var ml = menudetail.length
+	if (ml > 12) {
+		for (var msgl = 0; msgl < 12; msgl++) {
+			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
+			var msgcon1 = "<img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><label class=\"latest_list_name\">" + menudetail[msgl].title + "</label>";
+			var msgcon2 = "<div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
+			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div>";
+			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
+		}
+		//分页逻辑	
+		var pageCount = Math.ceil(ml / 12);
+//		console.log(pageCount);
+		var dividePagehStr = "<li><a href=\"#\" class=\"first\"></a></li><li><a href=\"#\" class=\"pre\"></a></li>";
+		var divideTailStr = "<li><a href=\"#\" class=\"next\"></a></li><li><a href=\"#\" class=\"last\"></a></li>";
+		var totalStr = "<li class=\"pagecount\"><span>共</span><span id=\"totalPage\">"+pageCount+"</span><span>页</span></li>"
+		var content = "";
+		for(var i=1;i<pageCount+1;i++){
+			content +="<li><a href=\"#\">"+i+"</a></li>";
+		}
+		$('#morepage').append(dividePagehStr+content+totalStr+divideTailStr);
+	} else {
+		for (var msgl = 0; msgl < ml; msgl++) {
+			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
+			var msgcon1 = "<img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><label class=\"latest_list_name\">" + menudetail[msgl].title + "</label>";
+			var msgcon2 = "<div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
+			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div>";
+			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
+		}
+	}
+});
+//花色汇==》最新花色 菜单切换效果
+function subnavClick() {
+	var latest_aside_subnav = $(".latest_aside_subnav");
+	var triangle = $(".triangle");
+	latest_aside_subnav.click(function() {
+		latest_aside_subnav.removeClass("latest_aside_subnav_active");
+		triangle.removeClass("triangle-right");
+		$(this).addClass("latest_aside_subnav_active");
+		$(this).siblings(".triangle").addClass("triangle-right");
+	});
+}
