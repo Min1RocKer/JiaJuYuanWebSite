@@ -30,14 +30,14 @@ $(document).ready(function() {
 				"loginName": phone,
 				"type": '1'
 			};
-			console.log(val);
+			//			console.log(val);
 			settime(this);
 			postData("/api/common/getValidateCode", postparam, function(msg) {
-				console.log(msg.result);
+				//				console.log(msg.result);
 				//倒计时
 			}, function(msg) {
 				alert("发送失败");
-				console.log(msg);
+				//				console.log(msg);
 			});
 		})
 		//用户登录
@@ -61,8 +61,9 @@ $(document).ready(function() {
 				"validatecode": verificationCode,
 				"plat": '3'
 			};
+			alert(JSON.stringify(postparam));
 			postData("/user/login/validCodeLogin", postparam, function(msg) {
-				console.log(msg.result);
+				//				console.log(msg.result);
 				if (iskeep) {
 					setCookie('userId', msg.result.userid, 7);
 					setCookie('token', msg.result.token, 7);
@@ -90,7 +91,7 @@ $(document).ready(function() {
 			delCookie('token');
 			window.location.reload();
 		})
-		//个人中心-侧边导航框点击效果
+	//个人中心-侧边导航框点击效果
 	var personal_aside_nav1 = $("#personal_aside_nav1");
 	var personal_aside_nav2 = $("#personal_aside_nav2");
 	personal_aside_nav1.click(function() {
@@ -133,7 +134,7 @@ $(document).ready(function() {
 	$('#vipinfo_modal_cancel').click(function() {
 			$('#vipinfo_modal').hide();
 		})
-		//验证是否是认真商家
+	//验证是否是认真商家
 	var officeId = $('#officeid').text()
 	var isVip = $('#isVip').text()
 	if (isVip == 1) {
@@ -159,7 +160,7 @@ $(document).ready(function() {
 				"content": _reason
 			};
 			postData("/web/user/applyChangeInfo", postparam, function(msg) {
-				console.log(msg);
+				//				console.log(msg);
 				if (msg.code == 1 || msg.code == '1') {
 					alert('提交成功!');
 					$('#vipinfo_modal').hide();
@@ -168,7 +169,7 @@ $(document).ready(function() {
 				alert(msg.msg);
 			});
 		})
-		//	非认证用户修改个人信息
+	//	非认证用户修改个人信息
 	$('#personal_info_update').click(function() {
 			var _name = $('#personName').val();
 			var _officeName = $('#personofficeName').val();
@@ -189,7 +190,7 @@ $(document).ready(function() {
 				"officename": _officeName
 			};
 			postData("/web/user/infoEdit", postparam, function(msg) {
-				console.log(msg);
+				//				console.log(msg);
 				if (msg.code == 1 || msg.code == '1') {
 					alert('提交成功!');
 					window.location.reload();
@@ -197,112 +198,7 @@ $(document).ready(function() {
 			}, function(msg) {
 				alert(msg.msg);
 			});
-		})
-		//花色汇-最新花色
-	for (var mainl = 0; mainl < menuJson.length; mainl++) {
-		var menuStr = "<div class=\"col-xs-140\">\<div id=\"latest_aside_nav\" class=\"latest_aside_nav col-xs-140\" >" + menuJson[mainl].MenuName + "</div></div>";
-		var subm = '';
-		if (menuJson[mainl].SubMenu) {
-			for (var subl = 0; subl < menuJson[mainl].SubMenu.length; subl++) {
-				subm += "<div class=\"col-xs-140\"><div class=\"triangle\">" +
-					"</div><div class=\"latest_aside_subnav col-xs-140\">" + menuJson[mainl].SubMenu[subl].subname + "</div></div>"
-			}
-		}
-		var content = menuStr + subm;
-		$('#latestMenuArea').append(content);
-	}
-	//调用花色汇==》最新花色 菜单切换效果
-	subnavClick();
-
-	//动态生成最新花色内容
-	var ml = menudetail.length;
-	if (ml > 12) {
-		for (var msgl = 0; msgl < 12; msgl++) {
-			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
-			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
-			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].title + "</label><div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div></div>";
-			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-		}
-		//分页逻辑	
-		var pageCount = Math.ceil(ml / 12);
-		var dividePagehStr = "<li><a href=\"#\" class=\"first\"></a></li><li><a href=\"#\" class=\"pre\"></a></li>";
-		var divideTailStr = "<li><a href=\"#\" class=\"next\"></a></li><li><a href=\"#\" class=\"last\"></a></li>";
-		var totalStr = "<li class=\"pagecount\"><span>共</span><span id=\"totalPage\">" + pageCount + "</span><span>页</span></li>"
-		var content = "";
-		for (var i = 1; i < pageCount + 1; i++) {
-			content += "<li><a href=\"#\">" + i + "</a></li>";
-		}
-		$('#morepage').append(dividePagehStr + content + totalStr + divideTailStr);
-		$('.checkdetail').bind({
-			mouseover: function(e) {
-				$(this).children('.latest_list_mouseover').show();
-			},
-			mouseout: function(e) {
-				$(this).children('.latest_list_mouseover').hide();
-			}
-		})
-	} else {
-		for (var msgl = 0; msgl < ml; msgl++) {
-			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
-			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"latestColor\" /><div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
-			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].title + "</label><div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div></div>";
-			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-			$('.checkdetail').bind({
-				mouseover: function(e) {
-					$(this).children('.latest_list_mouseover').show();
-				},
-				mouseout: function(e) {
-					$(this).children('.latest_list_mouseover').hide();
-				}
-			})
-		}
-	}
-	//动态生成经典花色内容
-	if (ml > 12) {
-		for (var msgl = 0; msgl < 12; msgl++) {
-			var msgStr = "<div class=\"classical_list col-xs-140\">";
-			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"classicalColor\" />";
-			var msgcon2 = "<p class=\"classical_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"classical_list_label\">" + menudetail[msgl].type + "</div><div class=\"classical_more\">查看详情</div></div>";
-			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-		}
-		//分页逻辑	
-		var pageCount = Math.ceil(ml / 12);
-		//console.log(pageCount);
-		var dividePagehStr = "<li><a href=\"#\" class=\"first\"></a></li><li><a href=\"#\" class=\"pre\"></a></li>";
-		var divideTailStr = "<li><a href=\"#\" class=\"next\"></a></li><li><a href=\"#\" class=\"last\"></a></li>";
-		var totalStr = "<li class=\"pagecount\"><span>共</span><span id=\"totalPage\">" + pageCount + "</span><span>页</span></li>"
-		var content = "";
-		for (var i = 1; i < pageCount + 1; i++) {
-			content += "<li><a href=\"#\">" + i + "</a></li>";
-		}
-		$('#classical_morepage').append(dividePagehStr + content + totalStr + divideTailStr);
-	} else {
-		for (var msgl = 0; msgl < ml; msgl++) {
-			var msgStr = "<div class=\"classical_list col-xs-140\">";
-			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"classicalColor\" />";
-			var msgcon2 = "<p class=\"classical_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"classical_list_label\">" + menudetail[msgl].type + "</div><div class=\"classical_more\">查看详情</div></div>";
-			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-		}
-	}
-	//查看大图通用点击事件
-	$('.latest_list_mouseover').click(function() {
-		var imgurl = $(this).parent().children('.latest_list_image').attr('src');
-		window.location.href = "viewBigImage.html?img=" + imgurl + "";
+			});
 	})
-});
 
-//花色汇==》最新花色 菜单切换效果
-function subnavClick() {
-	var latest_aside_subnav = $(".latest_aside_subnav");
-	var triangle = $(".triangle");
-	latest_aside_subnav.click(function() {
-		latest_aside_subnav.removeClass("latest_aside_subnav_active");
-		triangle.removeClass("triangle-right");
-		$(this).addClass("latest_aside_subnav_active");
-		$(this).siblings(".triangle").addClass("triangle-right");
-	});
-}
+

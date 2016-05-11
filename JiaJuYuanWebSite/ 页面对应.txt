@@ -12,3 +12,4 @@ Message 资讯
 personalCenter 个人中心
 recentActive  近期活动
 directConnect 直通号
+perCompanyColor 每个公司花色界面

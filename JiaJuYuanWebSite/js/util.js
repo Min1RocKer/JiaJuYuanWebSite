@@ -9,18 +9,22 @@ function postData(actionPath, jsonParam, successFunc, errorFunc) {
 		async: true,
 		dataType: "json",
 		success: function(msg) {
-			if (msg) {
+			if (msg.code == 1) {
 				if (successFunc) {
 					successFunc(msg);
 				}
 			}
+			else{
+				alert(msg.msg);
+			}
 		},
 		error: function(msg) {
+			alert(JSON.stringify(msg));
 			if (errorFunc) {
 				errorFunc(msg);
 			}
 		}
-	});
+	})
 }
 //返回顶部function1
 function toTop(obj) {
@@ -92,51 +96,71 @@ function GetRequest() {
 	}
 	return theRequest;
 }
+//剥离花色部分菜单
+function pickMenu(rs) {
+	var menuJson = new Array;
+	for (var i = 0; i < rs.length; i++) {
+		var menugp = new Object;
+		if (rs[i].parentCode == 0) {
+			menugp.MenuName = rs[i].name;
+			menugp.MenuId = rs[i].code;
+			var subMenu = new Array;
+			for (var j = 0; j < rs.length; j++) {
+				var sub = new Object;
+				if (rs[i].code == rs[j].parentCode) {
+					sub = {
+						subName: rs[j].name,
+						subId: rs[j].code
+					}
+					subMenu.push(sub);
+				}
+			}
+			menugp.sub = subMenu;
+			menuJson.push(menugp);
+		}
+	}
+	return menuJson;
+}
 //模拟接口数据
-var menuJson = [{
-		'MenuName': '三胺纸',
-		'MenuId': '01',
-		'SubMenu': [{
-			'subname': '全部',
-			'subId': 'all'
-		}, {
-			'subname': '木门',
-			'subId': '01-1'
-		}, {
-			'subname': '橱柜',
-			'subId': '01-2'
-		}, {
-			'subname': '地板',
-			'subId': '01-3'
-		}, {
-			'subname': '其他',
-			'subId': '01-3'
-		}]
-	}, {
-		'MenuName': 'PVC',
-		'MenuId': '02',
-		'SubMenu' :[
-			{
-				'subname': '全部',
-				'subId': 'all'
-			},
-			{
-				'subname': '木门',
-				'subId': '01-1'
-			},
-			{
-				'subname': '橱柜',
-				'subId': '01-2'
-			},
-			{
-				'subname': '地板',
-				'subId': '01-3'
-			},
-			{
-				'subname': '其他',
-				'subId': '01-3'
-			}]
-	}]
+//var menuJson = [{
+//		'MenuName': '三胺纸',
+//		'MenuId': '01',
+//		'SubMenu': [{
+//			'subname': '全部',
+//			'subId': 'all'
+//		}, {
+//			'subname': '木门',
+//			'subId': '01-1'
+//		}, {
+//			'subname': '橱柜',
+//			'subId': '01-2'
+//		}, {
+//			'subname': '地板',
+//			'subId': '01-3'
+//		}, {
+//			'subname': '其他',
+//			'subId': '01-3'
+//		}]
+//	}, {
+//		'MenuName': 'PVC',
+//		'MenuId': '02',
+//		'SubMenu': [{
+//			'subname': '全部',
+//			'subId': 'all'
+//		}, {
+//			'subname': '木门',
+//			'subId': '01-1'
+//		}, {
+//			'subname': '橱柜',
+//			'subId': '01-2'
+//		}, {
+//			'subname': '地板',
+//			'subId': '01-3'
+//		}, {
+//			'subname': '其他',
+//			'subId': '01-3'
+//		}]
+//	}]
 	//
 var menudetail = [{
 	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
