@@ -19,7 +19,6 @@ function postData(actionPath, jsonParam, successFunc, errorFunc) {
 			}
 		},
 		error: function(msg) {
-			alert(JSON.stringify(msg));
 			if (errorFunc) {
 				errorFunc(msg);
 			}

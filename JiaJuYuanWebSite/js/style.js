@@ -30,7 +30,6 @@ $(document).ready(function() {
 				"loginName": phone,
 				"type": '1'
 			};
-			//			console.log(val);
 			settime(this);
 			postData("/api/common/getValidateCode", postparam, function(msg) {
 				//				console.log(msg.result);
@@ -61,7 +60,6 @@ $(document).ready(function() {
 				"validatecode": verificationCode,
 				"plat": '3'
 			};
-			alert(JSON.stringify(postparam));
 			postData("/user/login/validCodeLogin", postparam, function(msg) {
 				//				console.log(msg.result);
 				if (iskeep) {

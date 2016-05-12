@@ -67,11 +67,11 @@ var data = [
 var nums = 5; //每页出现的数量
 var pages = Math.ceil(data.length/nums); //得到总页数
 
-var thisDate = function(curr){
+var thisDate = function(s){
     //此处只是演示，实际场景通常是返回已经当前页已经分组好的数据
-    var str = '', last = curr*nums - 1;
+    var str = '', last = s*nums - 1;
     last = last >= data.length ? (data.length-1) : last;
-    for(var i = (curr*nums - nums); i <= last; i++){
+    for(var i = (s*nums - nums); i <= last; i++){
         str += '<li>'+ data[i] +'</li>';
     }
     return str;
@@ -82,6 +82,7 @@ laypage({
     cont: 'biuuu_city',
     pages: pages,
     jump: function(obj){
+    	console.log(obj.curr);
         document.getElementById('biuuu_city_list').innerHTML = thisDate(obj.curr);
     }
 })

@@ -13,7 +13,6 @@
 		<script src="js/util.js" type="text/javascript" charset="utf-8"></script>
 		 <script src="js/style.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/HuaSe.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/laypage.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/Style.css">
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -94,11 +93,8 @@
 								</div>
 								<div id="backTop" class="backTop"></div>
 								<!--分页-->
-								<div id="latestPagenation">
+								<div id="paging">
 
-								</div>
-								<div id="tset">
-									
 								</div>
 							</div>
 						</div>
@@ -108,14 +104,5 @@
 
 		</article>
 		<footer>Copyright © 2015-2016 jjyapp.com 小雅科技 浙ICP备15024844号</footer>
-		<script>
-			//调用分页
-			laypage({
-				cont: 'latestPagenation',
-				pages: 10,
-				jump: function(obj) {
-					document.getElementById('tset').innerHTML = 'sdfsdf';
-				}
-			})
-		</script>
+		<script src="js/laypage.js" type="text/javascript" charset="utf-8"></script>
 	</body>
