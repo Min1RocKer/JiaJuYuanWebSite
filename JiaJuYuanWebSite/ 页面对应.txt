@@ -13,3 +13,6 @@ personalCenter 个人中心
 recentActive  近期活动
 directConnect 直通号
 perCompanyColor 每个公司花色界面
+coloDetails 新品详情页面
+perCompanyDetails 分公司详情
+recentActiveDetails 近期活动详情

@@ -36,70 +36,6 @@ $(document).ready(function() {
 	}, function(msg) {
 		alert(msg.msg);
 	});
-	//动态生成经典花色内容
-	var ml = menudetail.length;
-	if (ml > 12) {
-		for (var msgl = 0; msgl < 12; msgl++) {
-			var msgStr = "<div class=\"classical_list col-xs-140\">";
-			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"classicalColor\" />";
-			var msgcon2 = "<p class=\"classical_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"classical_list_label\">" + menudetail[msgl].type + "</div><div class=\"classical_more\"><a href=\"perCompanyColor.html\">查看详情</a></div></div>";
-			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-		}
-		//分页逻辑	
-		var pageCount = Math.ceil(ml / 12);
-		var dividePagehStr = "<li><a href=\"#\" class=\"first\"></a></li><li><a href=\"#\" class=\"pre\"></a></li>";
-		var divideTailStr = "<li><a href=\"#\" class=\"next\"></a></li><li><a href=\"#\" class=\"last\"></a></li>";
-		var totalStr = "<li class=\"pagecount\"><span>共</span><span id=\"totalPage\">" + pageCount + "</span><span>页</span></li>"
-		var content = "";
-		for (var i = 1; i < pageCount + 1; i++) {
-			content += "<li><a href=\"#\">" + i + "</a></li>";
-		}
-		$('#classical_morepage').append(dividePagehStr + content + totalStr + divideTailStr);
-	} else {
-		for (var msgl = 0; msgl < ml; msgl++) {
-			var msgStr = "<div class=\"classical_list col-xs-140\">";
-			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"classicalColor\" />";
-			var msgcon2 = "<p class=\"classical_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"classical_list_label\">" + menudetail[msgl].type + "</div><div class=\"classical_more\"><a href=\"perCompanyColor.html\">查看详情</a></div></div>";
-			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-		}
-	}
-	//动态生成分公司花色内容
-	var ml = menudetail.length;
-	if (ml > 12) {
-		for (var msgl = 0; msgl < 12; msgl++) {
-			var msgStr = "<div class=\"per_content_list_i col-xs-35\">";
-			var msgcon1 = "<div class=\"checkdetail\"><img class=\"per_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"perColor\" /><div class=\"per_list_mouseover\"><div class=\"per_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
-			var msgcon2 = "<label class=\"per_list_name\">" + menudetail[msgl].title + "</label><div class=\"per_list_label\">" + menudetail[msgl].type + "</div><p class=\"per_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"per_more center-block\">查看详情</div></div></div>";
-			$('#perMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-		}
-		$('.checkdetail').bind({
-			mouseover: function(e) {
-				$(this).children('.per_list_mouseover').show();
-			},
-			mouseout: function(e) {
-				$(this).children('.per_list_mouseover').hide();
-			}
-		})
-	} else {
-		for (var msgl = 0; msgl < ml; msgl++) {
-			var msgStr = "<div class=\"per_content_list_i col-xs-35\">";
-			var msgcon1 = "<div class=\"checkdetail\"><img class=\"per_list_image\" src=\"" + menudetail[msgl].img + "\" alt=\"perColor\" /><div class=\"per_list_mouseover\"><div class=\"per_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
-			var msgcon2 = "<label class=\"per_list_name\">" + menudetail[msgl].title + "</label><div class=\"per_list_label\">" + menudetail[msgl].type + "</div><p class=\"per_company\">" + menudetail[msgl].companyname + "</p>";
-			var msgcon3 = "<div class=\"per_more center-block\">查看详情</div></div></div>";
-			$('#perMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
-			$('.checkdetail').bind({
-				mouseover: function(e) {
-					$(this).children('.per_list_mouseover').show();
-				},
-				mouseout: function(e) {
-					$(this).children('.per_list_mouseover').hide();
-				}
-			})
-		}
-	}
 	//花色汇-最新花色
 	//获取分公司花色菜单
 	postData("/web/decorative/proTypeList", '', function(msg) {
@@ -117,14 +53,12 @@ $(document).ready(function() {
 			var content = menuStr + subm;
 			$('#perMenuArea').append(content);
 		}
-		//调用花色汇==》分公司 菜单切换效果
-		persubnavClick();
 	}, function(msg) {
 		alert(msg.msg);
 	});
 	//查看大图通用点击事件
 	$('.latest_list_mouseover').click(function() {
-			window.location.href = "viewBigImage.html";
+		window.location.href = "viewBigImage.html";
 	})
 });
 
@@ -140,17 +74,6 @@ function subnavClick() {
 		//组织参数
 		var t = $(this);
 		var pages = resetContent(t, 1);
-	});
-}
-//花色汇==》分公司花色 菜单切换效果
-function persubnavClick() {
-	var per_aside_subnav = $(".per_aside_subnav");
-	var triangle = $(".per_triangle");
-	per_aside_subnav.click(function() {
-		per_aside_subnav.removeClass("per_aside_subnav_active");
-		triangle.removeClass("triangle-right");
-		$(this).addClass("per_aside_subnav_active");
-		$(this).siblings(".per_triangle").addClass("triangle-right");
 	});
 }
 //最新花色 ====>更新右边的区域
@@ -216,17 +139,35 @@ function pageClick(thisJDom, pageNumber) {
 		for (var msgl = 0; msgl < ml; msgl++) {
 			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
 			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].smallimage + "\" alt=\"latestColor\" /><div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
-			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].name + "</label><div class=\"latest_list_label\">" + menudetail[msgl].proTypeName + "</div><p class=\"latest_company\">" + menudetail[msgl].companyName + "</p>";
-			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div></div>";
+			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].name + "</label><div class=\"latest_list_label\">" + menudetail[msgl].proTypeName + "</div><p class=\"latest_company\" companyId=\"" + menudetail[msgl].companyId + "\">" + menudetail[msgl].companyName + "</p>";
+			var msgcon3 = "";
+			if(menudetail[msgl].hasInfo){
+				 msgcon3 = "<div class=\"gray center-block\" colorId=\"" + menudetail[msgl].id + "\">查看详情</div></div></div>";
+			}
+			else{
+				 msgcon3 = "<div class=\"latest_more center-block\" colorId=\"" + menudetail[msgl].id + "\">查看详情</div></div></div>";
+			}
 			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
 		}
 		$('.checkdetail').bind({
-			mouseover: function(e) {
-				$(this).children('.latest_list_mouseover').show();
-			},
-			mouseout: function(e) {
-				$(this).children('.latest_list_mouseover').hide();
-			}
+				mouseover: function(e) {
+					$(this).children('.latest_list_mouseover').show();
+				},
+				mouseout: function(e) {
+					$(this).children('.latest_list_mouseover').hide();
+				}
+			})
+			//查看详情
+		$('.latest_more').click(function() {
+			var colorId = $(this).attr('colorId');
+			setCookie('colorId', colorId,'');
+			window.location.href = "colorDetails.html";
+		})
+			//供应商
+		$('.latest_company').click(function(){
+			var cpId = $(this).attr('companyId');
+			setCookie('companyId',cpId,'');
+			window.location.href = "perCompanyColor.html";
 		})
 	}, function(msg) {
 		alert(msg.msg);

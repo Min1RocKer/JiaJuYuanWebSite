@@ -8,12 +8,10 @@
 		<title>临安南洋装饰纸有限公司</title>
 		<script src="js/jquery-1.12.3.min.js"></script>
     	<script src="js/respond.min.js"></script>
-    	<script src="js/bootstrap.min.js"></script>
     	<script src="js/util.js" type="text/javascript" charset="utf-8"></script>
     	<script src="js/style.js" type="text/javascript" charset="utf-8"></script>
-    	<script src="js/HuaSe.js" type="text/javascript" charset="utf-8"></script>
+    	<script src="js/PerCompany.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/page.css" />
 		<link rel="stylesheet" href="css/Style.css">
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,12 +69,12 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-xs-140">
-							<img class="per_company_image pull-left" src="http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg" alt="per_company_image" />
-							<p id="per_companyname" class="per_companyname pull-left">杭州天元诚达装饰材料有限公司</p>
-							<div class="per_company_more pull-left"><a href="#">查看公司完整简介</a></div>
-							<p id="per_company_info" class="per_company_info pull-left">临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司</p>
+							<img class="per_company_image pull-left" src="" alt="per_company_image" />
+							<p id="per_companyname" class="per_companyname pull-left" companyId=""></p>
+							<div class="per_company_more pull-left"><a href="">查看公司完整简介</a></div>
+							<p id="per_company_info" class="per_company_info pull-left"></p>
 							<i class="per_phone_icon pull-right"></i>
-							<label id="per_contactnum" class="per_contactnum pull-right">联系方式：138-8888-8888</label>
+							<label id="per_contactnum" class="per_contactnum pull-right">联系方式：</label>
 						</div>
 					</div>
 				</div>
@@ -85,9 +83,9 @@
 		<article class="per_main container">
 			<div class="row">
 				<div class="col-xs-140">
-					<label id="per_latest_color" class="per_title per_title_active">最新花色</label>
-					<label id="per_classical_color" class="per_title">经典花色</label>
-					<label id="per_elecalbum" class="per_title">电子样册</label>
+					<label id="per_latest_color" class="per_title per_title_active" onclick="changeContent(1)">最新花色</label>
+					<label id="per_classical_color" class="per_title" onclick="changeContent(2)">经典花色</label>
+					<label id="per_elecalbum" class="per_title" onclick="changeContent(3)">电子样册</label>
 					<hr class="per_title_line">
 				</div>
 				<div class="col-xs-140 per_content">
@@ -99,7 +97,10 @@
 									<div id="perMenuArea" class="row">
 										<div id="backTop" class="huase_backTop"></div>
 									</div>
-
+									<div class="per_searchbox">
+										<input id="per_search_text" class="per_search_text _input" type="text" value="搜索经典花色">
+										<div class="per_searchbox_icon"><i></i></div>
+									</div>
 								</div>
 							</div>
 							
@@ -124,7 +125,7 @@
 									</div>
 								</div>
 								<!--分页-->
-								<div id="perPagenation">
+								<div id="paging">
 
 								</div>
 							</div>
@@ -158,4 +159,5 @@
 			</div>	
 		</article>
 		<footer>Copyright © 2015-2016 jjyapp.com 小雅科技 浙ICP备15024844号</footer>
+		<script src="js/laypage.js" type="text/javascript" charset="utf-8"></script>
 	</body>

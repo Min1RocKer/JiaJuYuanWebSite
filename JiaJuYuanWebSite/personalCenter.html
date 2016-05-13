@@ -8,7 +8,6 @@
 		<title>个人中心</title>
 		<script src="js/jquery-1.12.3.min.js"></script>
 		<script src="js/respond.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 		<script src="js/util.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/style.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
@@ -163,11 +162,16 @@
         </div>
         <div id="vipinfo_modal_content" class="vipinfo_modal_content">
           <label class="vipinfo_modal_label">*请在下面输入框内输入申请变更的内容：</label>
-          <textarea id="vipinfo_modal_reason" class="vipinfo_modal_reason">请填写您的申请理由</textarea>
+          <textarea id="vipinfo_modal_reason" class="vipinfo_modal_reason _input">请填写您的申请理由</textarea>
           <div id="vipinfo_modal_cancel" class="vipinfo_modal_cancel">取消申请</div>
           <div id="vipinfo_modal_submit" class="vipinfo_modal_submit">提交申请</div>
         </div>
     </div>
 		<footer>Copyright © 2015-2016 jjyapp.com 小雅科技 浙ICP备15024844号</footer>
+		<script type="text/javascript">
+			$("._input").focus(function(){
+				this.select();
+			});
+		</script>
 	</body>
 </html>

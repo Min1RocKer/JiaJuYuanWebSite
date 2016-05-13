@@ -211,4 +211,8 @@ $(document).ready(function() {
 		$("#index_desinav_classic").css("background-color", "#f6edda");
 	});
 
+	//点赞样式变化
+	$(".big_top_zan").click(function() {
+		$(".big_top_zan").css("background-position", "0% 70%");
+	});
 })

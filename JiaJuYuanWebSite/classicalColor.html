@@ -8,10 +8,9 @@
 		<title>经典花色</title>
 		<script src="js/jquery-1.12.3.min.js"></script>
 		<script src="js/respond.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
 		<script src="js/util.js" type="text/javascript" charset="utf-8"></script>
 		  <script src="js/style.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/HuaSe.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/classicalColor.js" type="text/javascript" charset="utf-8"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/Style.css">
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -81,13 +80,12 @@
 									<div class="row">
 										<div class="col-xs-110 pull-left">
 											<div class="classical_searchbox">
-												<input type="text">
-												<label>搜索公司</label>
-												<div class="classical_searchbox_icon"><i></i></div>												
+												<input id="classical_search_text" class="classical_search_text _input" type="text" value="搜索公司">
+												<div class="classical_searchbox_icon" id="classicialSearch"><i></i></div>												
 											</div>
 										</div>
 										<div class="col-xs-20 pull-right">
-											<div class="classical_searchColor">查看花色新品</div>
+											<div class="classical_searchColor"><a href="latestColor.html">查看花色新品</a></div>
 										</div>
 									</div>
 								</div>
@@ -114,7 +112,12 @@
 			</div>
 		</article>
 		<footer>Copyright © 2015-2016 jjyapp.com 小雅科技 浙ICP备15024844号</footer>
+		<script src="js/laypage.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$("._input").focus(function(){
+				this.select();
+			});
+		</script>
 	</body>
 </html>
 </body>
-
