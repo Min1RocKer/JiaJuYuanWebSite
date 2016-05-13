@@ -160,250 +160,28 @@ function pickMenu(rs) {
 //			'subId': '01-3'
 //		}]
 //	}]
-	//
-var menudetail = [{
+//mock接口数据
+function mockData1(obj,n){
+	var data = new Array;
+	for(var i=0;i<n;i++){
+		data.push(obj)	
+	}
+	return data;
+}
+//
+var menudetail = mockData1({
 	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
 	"title": "呵呵哒!",
 	"companyname": "moekee",
 	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}, {
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-}]
+},50)
+//
+function log(fn){
+	return function(_args){
+		var  start = Date.now();
+		fn(_args);
+		var used = Date.now() - start;
+		console.log("function"+fn+"used"+used+"time");
+	}
+}
+

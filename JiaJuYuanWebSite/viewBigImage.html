@@ -27,7 +27,7 @@
 				<div class="row">
 					<div class="big_top_logo pull-left"></div>
 					<div class="big_top_zan pull-right"></div>
-					<div class="big_top_close pull-right"></div>	
+					<div class="big_top_close pull-right" onclick="history.go(-1);"></div>	
 				</div>	
 			</div>
 		</header>
@@ -39,13 +39,5 @@
 			</div>
 		</article>
 		<footer>Copyright © 2015-2016 jjyapp.com 小雅科技 浙ICP备15024844号</footer>
-		<script>
-			window.onload = function(){
-						var url = GetRequest();	
-						var imgSrc = url.img;
-						$(".big_image").attr("src",imgSrc);
-						
-			}
-		</script>
 	</body>
 </html>

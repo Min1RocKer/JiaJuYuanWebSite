@@ -11,8 +11,9 @@
 	<body>
 		<div class="test" id="sdfss"></div>
 		<script>
-			var i = $('.test').attr('id');
-			alert(i);
+			function isWeixinBrowser() {
+				return /micromessenger/.test(navigator.userAgent.toLowerCase())
+			}
 		</script>
 		<!--<script>
 			function crossDomainAjax(url, successCallback) {

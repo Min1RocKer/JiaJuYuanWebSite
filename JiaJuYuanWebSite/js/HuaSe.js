@@ -2,7 +2,6 @@ $(document).ready(function() {
 	//花色汇-最新花色
 	//获取花色菜单
 	postData("/web/decorative/proTypeList", '', function(msg) {
-		//console.log(msg.result);
 		var rs = msg.result;
 		var menuJson = pickMenu(rs);
 		console.log(menuJson);
@@ -10,7 +9,7 @@ $(document).ready(function() {
 			var subm = '';
 			if (mainl == 0) {
 				subm = "<div class=\"col-xs-140\"><div class=\"triangle\">" +
-					"</div><div class=\"latest_aside_subnav col-xs-140\" code=\"" + menuJson[mainl].MenuId + "\" isparent=\"1\">全部</div></div>";
+					"</div><div class=\"latest_aside_subnav col-xs-140\" code=\"" + menuJson[mainl].MenuId + "\" isparent=\"1\" id=\"first\">全部</div></div>";
 			} else {
 				subm = "<div class=\"col-xs-140\"><div class=\"triangle\">" +
 					"</div><div class=\"latest_aside_subnav col-xs-140\" code=\"" + menuJson[mainl].MenuId + "\" isparent=\"1\">全部</div></div>";
@@ -24,9 +23,14 @@ $(document).ready(function() {
 			}
 			var content = menuStr + subm;
 			$('#latestMenuArea').append(content);
-			var MenuGp = $('#latestMenuArea .col-xs-140');
-			console.log(typeof MenuGp);
 		}
+		//首次展示
+		var firstShow = $('#first')
+		resetContent(firstShow, 1);
+		$(".latest_aside_subnav").removeClass("latest_aside_subnav_active");
+		$(".triangle").removeClass("triangle-right");
+		firstShow.addClass("latest_aside_subnav_active");
+		firstShow.siblings(".triangle").addClass("triangle-right");
 		//调用花色汇==》最新花色 菜单切换效果
 		subnavClick();
 	}, function(msg) {
@@ -120,23 +124,8 @@ $(document).ready(function() {
 	});
 	//查看大图通用点击事件
 	$('.latest_list_mouseover').click(function() {
-		imgurl = $(this).parent().children('.latest_list_image').attr('src');
-		window.location.href = "viewBigImage.html?img=" + imgurl + "";
+			window.location.href = "viewBigImage.html";
 	})
-	//首页点击效果
-	$("#index_desinav_new").click(function() {
-		$("#triangle_classic").css("display", "none");
-		$("#triangle_new").css("display", "block");
-		$("#index_desinav_new").css("background-color", "#f6edda");
-		$("#index_desinav_classic").css("background-color", "#f5f4f4");
-	});
-	$("#index_desinav_classic").click(function() {
-		$("#triangle_classic").css("display", "block");
-		$("#triangle_new").css("display", "none");
-		$("#index_desinav_new").css("background-color", "#f5f4f4");
-		$("#index_desinav_classic").css("background-color", "#f6edda");
-	});
-
 });
 
 //花色汇==》最新花色 菜单切换效果
@@ -151,19 +140,6 @@ function subnavClick() {
 		//组织参数
 		var t = $(this);
 		var pages = resetContent(t, 1);
-		console.log(resetContent(t, 1));
-		console.log(pages);
-		//分页
-		laypage({
-				cont: 'paging',
-				pages: 10,
-				groups:6,
-				jump: function(obj) {
-					$('#latestMsgArea').empty();
-					resetContent(t,obj.curr);
-				}
-			})
-		//
 	});
 }
 //花色汇==》分公司花色 菜单切换效果
@@ -178,7 +154,45 @@ function persubnavClick() {
 	});
 }
 //最新花色 ====>更新右边的区域
-function resetContent(thisJDom, pageNumber) {
+function resetContent(thisJDom) {
+	$('#latestMsgArea').empty();
+	var _userid = getCookie('userId');
+	var _token = getCookie('token');
+	var typeCode = thisJDom.attr('code');
+	var isp = parseInt(thisJDom.attr('isparent'));
+	var pages = '';
+	var postparam = {
+		"userId": _userid,
+		"token": _token,
+		"pageNo": 1,
+		"pageSize": 1,
+		"type": 0,
+		"isParent": isp,
+		"proType": typeCode
+	}
+	postData("/web/decorative/webDecorativeList", postparam, function(msg) {
+		console.log(msg.result);
+		var menudetail = msg.result.papers;
+		//处理花色数据
+		var ml = menudetail.length;
+		var total = msg.result.count;
+		pages = Math.ceil(total / 1);
+		console.log(pages);
+		//		//分页
+		laypage({
+			cont: 'paging',
+			pages: pages,
+			groups: 6,
+			jump: function(obj) {
+				pageClick(thisJDom, obj.curr);
+			}
+		})
+	}, function(msg) {
+		alert(msg.msg);
+	});
+}
+//最新花色 分页时的切换
+function pageClick(thisJDom, pageNumber) {
 	$('#latestMsgArea').empty();
 	var _userid = getCookie('userId');
 	var _token = getCookie('token');
@@ -189,7 +203,7 @@ function resetContent(thisJDom, pageNumber) {
 		"userId": _userid,
 		"token": _token,
 		"pageNo": pageNumber,
-		"pageSize": 12,
+		"pageSize": 1,
 		"type": 0,
 		"isParent": isp,
 		"proType": typeCode
@@ -199,19 +213,10 @@ function resetContent(thisJDom, pageNumber) {
 		var menudetail = msg.result.papers;
 		//处理花色数据
 		var ml = menudetail.length;
-		pages = Math.ceil(ml/1);
-		console.log(pages);
-		var mlg = '';
-		if(ml>=12){
-			mlg = 12;
-		}
-		else{
-			mlg = ml;
-		}
-		for (var msgl = 0; msgl <1 ; msgl++) {
+		for (var msgl = 0; msgl < ml; msgl++) {
 			var msgStr = "<div class=\"latest_content_list_i col-xs-35\">";
 			var msgcon1 = "<div class=\"checkdetail\"><img class=\"latest_list_image\" src=\"" + menudetail[msgl].smallimage + "\" alt=\"latestColor\" /><div class=\"latest_list_mouseover\"><div class=\"latest_list_mouseover_bg\"></div><i></i><label>点击查看大图</label></div></div>";
-			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].title + "</label><div class=\"latest_list_label\">" + menudetail[msgl].type + "</div><p class=\"latest_company\">" + menudetail[msgl].companyname + "</p>";
+			var msgcon2 = "<label class=\"latest_list_name\">" + menudetail[msgl].name + "</label><div class=\"latest_list_label\">" + menudetail[msgl].proTypeName + "</div><p class=\"latest_company\">" + menudetail[msgl].companyName + "</p>";
 			var msgcon3 = "<div class=\"latest_more center-block\">查看详情</div></div></div>";
 			$('#latestMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
 		}
@@ -226,5 +231,4 @@ function resetContent(thisJDom, pageNumber) {
 	}, function(msg) {
 		alert(msg.msg);
 	});
-	return pages;
 }

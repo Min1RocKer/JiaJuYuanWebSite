@@ -44,7 +44,7 @@
 							<li role="presentation" class="active col-md-20 col-sm-20 col-xs-140"><a title="首页" ref="bookmark" href="index.html">首页</a></li>
 							<li role="presentation" class="col-md-20 col-sm-20 col-xs-140"><a class="active-color" title="花色汇" ref="bookmark" href="#">花色汇</a>
 								<ul class="sub-menu">
-									<li><a title="最新花色" ref="bookmark" href="perColor.html" class="line">最新花色</a></li>
+									<li><a title="最新花色" ref="bookmark" href="latestColor.html" class="line">最新花色</a></li>
 									<li><a title="经典花色" ref="bookmark" href="classicalColor.html" class="line">经典花色</a></li>
 									<li><a title="找花色" ref="bookmark" href="discover.html" class="line">找花色</a></li>
 									<li><a title="抢花色" ref="bookmark" href="grab.html">抢花色</a></li>
@@ -72,8 +72,11 @@
 					<div class="row">
 						<div class="col-xs-140">
 							<img class="per_company_image pull-left" src="http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg" alt="per_company_image" />
-							<p class="per_companyname pull-left">杭州天元诚达装饰材料有限公司</p>
-							<p class="per_company_info pull-left">临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司</p>
+							<p id="per_companyname" class="per_companyname pull-left">杭州天元诚达装饰材料有限公司</p>
+							<div class="per_company_more pull-left"><a href="#">查看公司完整简介</a></div>
+							<p id="per_company_info" class="per_company_info pull-left">临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司临安市南洋装饰纸有限公司</p>
+							<i class="per_phone_icon pull-right"></i>
+							<label id="per_contactnum" class="per_contactnum pull-right">联系方式：138-8888-8888</label>
 						</div>
 					</div>
 				</div>
@@ -82,9 +85,9 @@
 		<article class="per_main container">
 			<div class="row">
 				<div class="col-xs-140">
-					<label class="per_title">最新花色</label>
-					<label class="per_title">经典花色</label>
-					<label class="per_title">电子样册</label>
+					<label id="per_latest_color" class="per_title per_title_active">最新花色</label>
+					<label id="per_classical_color" class="per_title">经典花色</label>
+					<label id="per_elecalbum" class="per_title">电子样册</label>
 					<hr class="per_title_line">
 				</div>
 				<div class="col-xs-140 per_content">
@@ -94,10 +97,13 @@
 							<div class="col-xs-23 per_nav">
 								<div class="container-fluid">
 									<div id="perMenuArea" class="row">
+										<div id="backTop" class="huase_backTop"></div>
 									</div>
+
 								</div>
 							</div>
-							<!--**************右侧内容****************-->
+							
+							<!--**************最新花色&经典花色右侧内容****************-->
 							<div class="col-xs-114 per_content_main">
 								<div class="per_content_list container-fluid">
 									<div class="row" id="perMsgArea">
@@ -117,17 +123,39 @@
 										</div>-->
 									</div>
 								</div>
-								<div id="backTop" class="backTop"></div>
 								<!--分页-->
 								<div id="perPagenation">
 
 								</div>
 							</div>
+							<!--**************电子样册 申请查看电子图集****************-->
+							<div class="col-xs-140 per_elecalbum_main">
+								<div id="per_elecalbum_applybtn" class="per_elecalbum_applybtn center-block">点击申请查看电子样册</div>
+								<div id="backTop" class="backTop"></div>
+							</div>
+							<!--****申请变更资料弹出框****-->
+						    <div id="per_elecalbum_modal" class="per_elecalbum_modal">
+						        <div class="per_elecalbum_modal_bg"></div>
+						        <div id="per_elecalbum_modal_header" class="per_elecalbum_modal_header">
+						          <label class="per_elecalbum_modal_title">申请查看</label>
+						          <i id="per_elecalbum_modal_close" class="per_elecalbum_modal_close"></i>
+						        </div>
+						        <div id="per_elecalbum_modal_content" class="per_elecalbum_modal_content">
+						          <div class="per_elecalbum_modal_label"><span>您正在申请查看<span class="per_elecalbum_companyname">上海美佳出轨制造有限公司</span>的花色库</span></div>
+						          <div class="per_elecalbum_modal_text">*您的公司名称：</div>
+						          <div class="per_elecalbum_modal_text">填写申请理由：</div>
+						          <div class="per_elecalbum_modal_text per_elecalbum_modal_text_margin">*您的联系方式：</div>
+						          <input type="text" id="per_elecalbum_modal_companyname" class="per_elecalbum_modal_companyname _input" value="请填写公司名称"/>
+						          <textarea id="per_elecalbum_modal_reason" class="_input per_elecalbum_modal_reason">请填写您的申请理由</textarea>
+						          <input type="text" id="per_elecalbum_modal_numb" class="_input per_elecalbum_modal_numb" value="请填写您的联系方式"/>
+						          <div id="per_elecalbum_modal_cancel" class="per_elecalbum_modal_cancel">取消申请</div>
+						          <div id="per_elecalbum_modal_submit" class="per_elecalbum_modal_submit">提交申请</div>
+						        </div>
+						    </div>
 						</div>
 					</div>
 				</div>
-			</div>
-			
+			</div>	
 		</article>
 		<footer>Copyright © 2015-2016 jjyapp.com 小雅科技 浙ICP备15024844号</footer>
 	</body>

@@ -89,7 +89,7 @@ $(document).ready(function() {
 			delCookie('token');
 			window.location.reload();
 		})
-	//个人中心-侧边导航框点击效果
+		//个人中心-侧边导航框点击效果
 	var personal_aside_nav1 = $("#personal_aside_nav1");
 	var personal_aside_nav2 = $("#personal_aside_nav2");
 	personal_aside_nav1.click(function() {
@@ -132,7 +132,7 @@ $(document).ready(function() {
 	$('#vipinfo_modal_cancel').click(function() {
 			$('#vipinfo_modal').hide();
 		})
-	//验证是否是认真商家
+		//验证是否是认真商家
 	var officeId = $('#officeid').text()
 	var isVip = $('#isVip').text()
 	if (isVip == 1) {
@@ -167,36 +167,48 @@ $(document).ready(function() {
 				alert(msg.msg);
 			});
 		})
-	//	非认证用户修改个人信息
+		//	非认证用户修改个人信息
 	$('#personal_info_update').click(function() {
-			var _name = $('#personName').val();
-			var _officeName = $('#personofficeName').val();
-			var _industry = $('#personindustry').val();
-			if (_name.length == 0 || _officeName == 0 || _industry == 0) {
-				alert("请确保修改内容不为空!");
-				return;
+		var _name = $('#personName').val();
+		var _officeName = $('#personofficeName').val();
+		var _industry = $('#personindustry').val();
+		if (_name.length == 0 || _officeName == 0 || _industry == 0) {
+			alert("请确保修改内容不为空!");
+			return;
+		}
+		var _userid = getCookie('userId');
+		var _token = getCookie('token');
+		var _officeid = $('#officeid').text();
+		var postparam = {
+			"userId": _userid,
+			"token": _token,
+			"username": _name,
+			"industry": _industry,
+			"officeid": _officeid,
+			"officename": _officeName
+		};
+		postData("/web/user/infoEdit", postparam, function(msg) {
+			//				console.log(msg);
+			if (msg.code == 1 || msg.code == '1') {
+				alert('提交成功!');
+				window.location.reload();
 			}
-			var _userid = getCookie('userId');
-			var _token = getCookie('token');
-			var _officeid = $('#officeid').text();
-			var postparam = {
-				"userId": _userid,
-				"token": _token,
-				"username": _name,
-				"industry": _industry,
-				"officeid": _officeid,
-				"officename": _officeName
-			};
-			postData("/web/user/infoEdit", postparam, function(msg) {
-				//				console.log(msg);
-				if (msg.code == 1 || msg.code == '1') {
-					alert('提交成功!');
-					window.location.reload();
-				}
-			}, function(msg) {
-				alert(msg.msg);
-			});
-			});
-	})
+		}, function(msg) {
+			alert(msg.msg);
+		});
+	});
+	//首页点击效果
+	$("#index_desinav_new").click(function() {
+		$("#triangle_classic").css("display", "none");
+		$("#triangle_new").css("display", "block");
+		$("#index_desinav_new").css("background-color", "#f6edda");
+		$("#index_desinav_classic").css("background-color", "#f5f4f4");
+	});
+	$("#index_desinav_classic").click(function() {
+		$("#triangle_classic").css("display", "block");
+		$("#triangle_new").css("display", "none");
+		$("#index_desinav_new").css("background-color", "#f5f4f4");
+		$("#index_desinav_classic").css("background-color", "#f6edda");
+	});
 
-
+})
