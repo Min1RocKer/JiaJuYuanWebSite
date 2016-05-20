@@ -1,6 +1,5 @@
 //ajax数据交互
 var serverDomain = "http://192.168.1.20:8080";
-
 function postData(actionPath, jsonParam, successFunc, errorFunc) {
 	$.ajax({
 		url: serverDomain + actionPath,
@@ -9,12 +8,11 @@ function postData(actionPath, jsonParam, successFunc, errorFunc) {
 		async: true,
 		dataType: "json",
 		success: function(msg) {
-			if (msg.code == 1||msg.code == "W2002") {
+			if (msg.code == 1 || msg.code == "W2002") {
 				if (successFunc) {
 					successFunc(msg);
 				}
-			}
-			else{
+			} else {
 				alert(msg.msg);
 			}
 		},
@@ -28,6 +26,19 @@ function postData(actionPath, jsonParam, successFunc, errorFunc) {
 //返回顶部function1
 function toTop(obj) {
 	var timer = null;
+	var clientHeight = document.documentElement.clientHeight;
+	window.onscroll = function() {
+		var ostop = document.documentElement.scrollTop || document.body.scrollTop;
+		if (ostop>=clientHeight) {
+			obj.style.display = "block";
+		}else{
+			obj.style.display = "none";
+		}
+		if(!ostop){
+			clearInterval(timer);
+		}
+		ostop = false;
+	}
 	obj.onclick = function() {
 		timer = setInterval(function() {
 			var topscroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -122,31 +133,31 @@ function pickMenu(rs) {
 }
 //模拟接口数据
 //mock接口数据
-function mockData1(obj,n){
+function mockData1(obj, n) {
 	var data = new Array;
-	for(var i=0;i<n;i++){
-		data.push(obj)	
+	for (var i = 0; i < n; i++) {
+		data.push(obj)
 	}
 	return data;
 }
 //
 var menudetail = mockData1({
-	"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
-	"title": "呵呵哒!",
-	"companyname": "moekee",
-	"type": "木门"
-},50)
-//
+		"img": 'http://www.tzhiyuan.net/data/upload/qiongtong/1439336729.jpg',
+		"title": "呵呵哒!",
+		"companyname": "moekee",
+		"type": "木门"
+	}, 50)
+	//
 var serverdomain = "";
-function getAddress(){
+
+function getAddress() {
 	var local = window.location.href;
-	if(local.indexOf('192.168.1.20')!=-1){
+	if (local.indexOf('192.168.1.20') != -1) {
 		console.log(local.indexOf('192.168.1.20'));
-		serverdomain = "http://192.168.1.20:8080/website";
-	}
-	else if(local.indexOf('127.0.0.1')!=-1){
+		serverdomain = "http://192.168.1.20:8080/web/";
+	} else if (local.indexOf('127.0.0.1') != -1) {
 		serverdomain = "http://127.0.0.1:8020/JiaJuYuanWebSite/";
-	}else{
+	} else {
 		serverdomain = "localhost:8080/JiaJuYuanWebSite/";
 	}
 }

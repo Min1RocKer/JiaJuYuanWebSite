@@ -1,9 +1,14 @@
 $(document).ready(function() {
 	//回到顶部效果
-	$('#backTop').click(function() {
-			pageScroll();
-		})
-		//获取验证码
+	var t = document.getElementById("backTop");
+	if (t) {
+		toTop(t);
+	}
+
+	//	$('#backTop').click(function() {
+	//			pageScroll();
+	//		})
+	//获取验证码
 	var countdown = 60;
 
 	function settime(val) {
@@ -214,21 +219,46 @@ $(document).ready(function() {
 	//查看大图
 	$('.viewImage').click(function() {
 			var imageId = $(this).attr('colorId');
-			window.location.href = serverdomain + "viewBigImage.html?h=" + imageId + "";
+			//			window.location.href = serverdomain + "viewBigImage?h=" + imageId + "" +"&type="+1;
+			window.location.href = serverdomain + "viewBigImage.html?h=" + imageId + "" + "&type=" + 1;
 		})
 		//查看详情
 	$('.indexInfo').click(function() {
 			var colorId = $(this).attr('colorId');
+			//			window.location.href = serverdomain + "colorDetails?h=" + colorId + "";
 			window.location.href = serverdomain + "colorDetails.html?h=" + colorId + "";
 		})
 		//
 	$('.classicaldetail').click(function() {
 			var cpId = $(this).attr('companyId');
 			window.location.href = serverdomain + "perCompanyColor.html?h=" + cpId + "";
+			//			window.location.href = serverdomain + "perCompanyColor?h=" + cpId + "";
 		})
 		//点赞样式变化
-	$(".big_top_zan").click(function() {
-		$(".big_top_zan").css("background-position", "0% 70%");
+	$("#big_top_zan").click(function() {
+		if ($("#big_top_zan").hasClass("big_top_zan")) {
+			$("#big_top_zan").removeClass("big_top_zan");
+			$("#big_top_zan").addClass("big_top_zan_active");
+			var requestParam = GetRequest();
+			var id = requestParam.h;
+			var thetype = requestParam.type;
+			var _userid = getCookie('userId');
+			var _token = getCookie('token');
+			var postparam = {
+				"userId": _userid,
+				"token": _token,
+				"type":thetype,
+				"tagId":id
+			}
+			postData("/web/decorative/support", postparam, function(msg) {
+				console.log(msg);
+			}, function(msg) {
+				alert(msg.msg);
+			});
+		} else {
+			$("#big_top_zan").removeClass("big_top_zan_active");
+			$("#big_top_zan").addClass("big_top_zan");
+		}
 	});
 	//
 	$('#index_desinav_new').click(function() {

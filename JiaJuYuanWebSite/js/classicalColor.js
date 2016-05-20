@@ -7,7 +7,7 @@ $(document).ready(function() {
 	postData("/web/decorative/sellerCompanyList", postparam, function(msg) {
 		console.log(msg.result);
 		var total = msg.result.count;
-		pages = Math.ceil(total / 2);
+		pages = Math.ceil(total / 8);
 		//		//分页
 		laypage({
 			cont: 'paging',
@@ -20,7 +20,6 @@ $(document).ready(function() {
 	}, function(msg) {
 		alert(msg.msg);
 	});
-	//
 //搜索
 $('#classicialSearch').click(function() {
 	var searchKeys = $('#classical_search_text').val();
@@ -32,7 +31,8 @@ $('#classicialSearch').click(function() {
 	postData("/web/decorative/sellerCompanyList", postparam, function(msg) {
 		console.log(msg.result);
 		var total = msg.result.count;
-		pages = Math.ceil(total / 2);
+		pages = Math.ceil(total / 8);
+		console.log(pages);
 		//		//分页
 		laypage({
 			cont: 'paging',
@@ -52,7 +52,7 @@ function resetClassicalArea(pageNumber, name) {
 	$('#classicalMsgArea').empty();
 	var postparam = {
 		"pageNo": pageNumber,
-		"pageSize": 2,
+		"pageSize": 8,
 		"name": name
 	}
 	postData("/web/decorative/sellerCompanyList", postparam, function(msg) {
@@ -65,8 +65,8 @@ function resetClassicalArea(pageNumber, name) {
 			var msgStr = "<div class=\"classical_list col-xs-140\">";
 			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + companyList[msgl].photo + "\" alt=\"classicalColor\" />";
 			var msgcon2 = "<p class=\"classical_company\">" + companyList[msgl].name + "</p>";
-			//			var msgcon3 = "<div class=\"classical_list_label\"></div><div class=\"classical_more\"><a href=\"perCompanyColor.html\">查看详情</a></div></div>";
-			var msgcon3 = "<div class=\"classical_more\"><a href=\"perCompanyColor.html\">查看详情</a></div></div>";
+			var msgcon3 = "<div class=\"classical_more\"><a href=\""+serverdomain+"perCompanyColor.html?h="+companyList[msgl].id+"\">查看详情</a></div></div>";
+//var msgcon3 = "<div class=\"classical_more\"><a href=\""+serverdomain+"perCompanyColor?h="+companyList[msgl].id+"\">查看详情</a></div></div>";
 			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
 		}
 	}, function(msg) {
