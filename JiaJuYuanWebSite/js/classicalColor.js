@@ -65,8 +65,8 @@ function resetClassicalArea(pageNumber, name) {
 			var msgStr = "<div class=\"classical_list col-xs-140\">";
 			var msgcon1 = "<img class=\"classical_list_image\" src=\"" + companyList[msgl].photo + "\" alt=\"classicalColor\" />";
 			var msgcon2 = "<p class=\"classical_company\">" + companyList[msgl].name + "</p>";
-			var msgcon3 = "<div class=\"classical_more\"><a href=\""+serverdomain+"perCompanyColor.html?h="+companyList[msgl].id+"\">查看详情</a></div></div>";
-//var msgcon3 = "<div class=\"classical_more\"><a href=\""+serverdomain+"perCompanyColor?h="+companyList[msgl].id+"\">查看详情</a></div></div>";
+//			var msgcon3 = "<div class=\"classical_more\"><a href=\""+serverdomain+"perCompanyColor.html?h="+companyList[msgl].id+"\">查看详情</a></div></div>";
+var msgcon3 = "<div class=\"classical_more\"><a href=\""+serverdomain+"/web/perCompanyColor?h="+companyList[msgl].id+"\">查看详情</a></div></div>";
 			$('#classicalMsgArea').append(msgStr + msgcon1 + msgcon2 + msgcon3);
 		}
 	}, function(msg) {

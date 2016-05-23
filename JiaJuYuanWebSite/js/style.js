@@ -68,14 +68,17 @@ $(document).ready(function() {
 			postData("/user/login/validCodeLogin", postparam, function(msg) {
 				//				console.log(msg.result);
 				if (iskeep) {
+
 					setCookie('userId', msg.result.userid, 7);
 					setCookie('token', msg.result.token, 7);
+					setCookie('phone', phone, 7);
 				} else {
 					setCookie('userId', msg.result.userid);
 					setCookie('token', msg.result.token);
+					setCookie('phone', phone, 7);
 				}
-				console.log(serverdomain);
-				window.location.href = serverdomain + 'index.html';
+				window.location.href = serverdomain + '/web';
+				//window.location.href = "index.html";
 			}, function(msg) {
 				alert('登录失败');
 			});
@@ -219,45 +222,57 @@ $(document).ready(function() {
 	//查看大图
 	$('.viewImage').click(function() {
 			var imageId = $(this).attr('colorId');
-			//			window.location.href = serverdomain + "viewBigImage?h=" + imageId + "" +"&type="+1;
-			window.location.href = serverdomain + "viewBigImage.html?h=" + imageId + "" + "&type=" + 1;
+			//window.location.href = serverdomain + "viewBigImage?h=" + imageId + "" + "&type=" + 1;
+			window.location.href = serverdomain + "/web/viewBigImage?h=" + imageId + "" + "&type=" + 1;
 		})
 		//查看详情
 	$('.indexInfo').click(function() {
 			var colorId = $(this).attr('colorId');
-			//			window.location.href = serverdomain + "colorDetails?h=" + colorId + "";
-			window.location.href = serverdomain + "colorDetails.html?h=" + colorId + "";
+			window.location.href = serverdomain + "/web/colorDetails?h=" + colorId + "";
+			//	window.location.href = serverdomain + "colorDetails.html?h=" + colorId + "";
 		})
 		//
 	$('.classicaldetail').click(function() {
 			var cpId = $(this).attr('companyId');
-			window.location.href = serverdomain + "perCompanyColor.html?h=" + cpId + "";
-			//			window.location.href = serverdomain + "perCompanyColor?h=" + cpId + "";
+			//	window.location.href = serverdomain + "perCompanyColor.html?h=" + cpId + "";
+			window.location.href = serverdomain + "/web/perCompanyColor?h=" + cpId + "";
 		})
 		//点赞样式变化
 	$("#big_top_zan").click(function() {
+		var requestParam = GetRequest();
+		var id = requestParam.h;
+		var thetype = requestParam.type;
+		var _userid = getCookie('userId');
+		var _token = getCookie('token');
 		if ($("#big_top_zan").hasClass("big_top_zan")) {
-			$("#big_top_zan").removeClass("big_top_zan");
-			$("#big_top_zan").addClass("big_top_zan_active");
-			var requestParam = GetRequest();
-			var id = requestParam.h;
-			var thetype = requestParam.type;
-			var _userid = getCookie('userId');
-			var _token = getCookie('token');
 			var postparam = {
 				"userId": _userid,
 				"token": _token,
-				"type":thetype,
-				"tagId":id
+				"type": thetype,
+				"tagId": id
 			}
 			postData("/web/decorative/support", postparam, function(msg) {
+				$("#big_top_zan").removeClass("big_top_zan");
+				$("#big_top_zan").addClass("big_top_zan_active");
 				console.log(msg);
 			}, function(msg) {
 				alert(msg.msg);
 			});
 		} else {
-			$("#big_top_zan").removeClass("big_top_zan_active");
-			$("#big_top_zan").addClass("big_top_zan");
+			//
+			var postparam = {
+				"userId": _userid,
+				"token": _token,
+				"type": thetype,
+				"tagId": id
+			}
+			postData("/web/decorative/unsupport", postparam, function(msg) {
+				$("#big_top_zan").removeClass("big_top_zan_active");
+				$("#big_top_zan").addClass("big_top_zan");
+				console.log(msg);
+			}, function(msg) {
+				alert(msg.msg);
+			});
 		}
 	});
 	//

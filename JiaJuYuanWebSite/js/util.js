@@ -1,8 +1,8 @@
 //ajax数据交互
-var serverDomain = "http://192.168.1.20:8080";
+//var serverdomain = "http://192.168.1.20:8080";
 function postData(actionPath, jsonParam, successFunc, errorFunc) {
 	$.ajax({
-		url: serverDomain + actionPath,
+		url: serverdomain + actionPath,
 		data: JSON.stringify(jsonParam),
 		type: "post",
 		async: true,
@@ -42,7 +42,7 @@ function toTop(obj) {
 	obj.onclick = function() {
 		timer = setInterval(function() {
 			var topscroll = document.documentElement.scrollTop || document.body.scrollTop;
-			var speed = Math.floor(-topscroll / 5);
+			var speed = Math.floor(-topscroll / 2);
 			document.documentElement.scrollTop = document.body.scrollTop = topscroll + speed;
 			if (topscroll == 0) {
 				clearInterval(timer);
@@ -69,8 +69,9 @@ function pageScroll() {
 //设置cookie
 function setCookie(c_name, value, expiredays) {　　　　
 	var exdate = new Date();　　　　
-	exdate.setDate(exdate.getDate() + expiredays);　　　　
-	document.cookie = c_name + "=" + escape(value) + ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString());　　
+	exdate.setDate(exdate.getDate() + expiredays);
+	document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString()) + ";path=" + "/" + ";domain="+serverIp;　　　
+//	document.cookie=c_name+ "=" + escape(value) + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString()) 　
 }
 //取cookie
 function getCookie(c_name) {　　　　
@@ -91,7 +92,7 @@ function delCookie(name) {
 	exp.setTime(exp.getTime() - 1);
 	var cval = getCookie(name);
 	if (cval != null)
-		document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
+	document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString()+ ";path=" + "/" + ";domain="+serverIp;
 }
 //从url中取参数
 function GetRequest() {
@@ -149,16 +150,30 @@ var menudetail = mockData1({
 	}, 50)
 	//
 var serverdomain = "";
-
+var serverIp = "";
 function getAddress() {
 	var local = window.location.href;
 	if (local.indexOf('192.168.1.20') != -1) {
-		console.log(local.indexOf('192.168.1.20'));
-		serverdomain = "http://192.168.1.20:8080/web/";
-	} else if (local.indexOf('127.0.0.1') != -1) {
-		serverdomain = "http://127.0.0.1:8020/JiaJuYuanWebSite/";
-	} else {
-		serverdomain = "localhost:8080/JiaJuYuanWebSite/";
+		serverdomain = "http://192.168.1.20:8080";
+		serverIp = "192.168.1.20";
+	} 
+	else if (local.indexOf('127.0.0.1') != -1) {
+		serverdomain = "http://127.0.0.1:8020/JiaJuYuanWebSite";
+		serverIp = "127.0.0.1";
+	} 
+	//测试环境
+	else if(local.indexOf('121.43.149.191') != -1){
+		serverdomain = "http://121.43.149.191:8000";
+		serverIp = "121.43.149.191";
+	} 
+	//正式环境
+	else if(local.indexOf('www.jjyapp.com') != -1){
+		serverdomain = "http://www.jjyapp.com";
+		serverIp = "www.jjyapp.com";
+	}
+	else {
+		serverdomain = "http://localhost:8080";
+		serverIp = "localhost";
 	}
 }
 getAddress();

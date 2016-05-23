@@ -162,20 +162,20 @@ function pageClick(thisJDom, pageNumber) {
 		//查看大图
 		$('.latest_list_mouseover').click(function(){
 			var imageId = $(this).attr('colorId');
-			window.location.href = serverdomain+"viewBigImage.html?h="+imageId+""+"&type="+1;
-			//window.location.href = serverdomain+"viewBigImage?h="+imageId+""+"&type="+1;
+			//window.location.href = serverdomain+"viewBigImage.html?h="+imageId+""+"&type="+1;
+			window.location.href = serverdomain+"/web/viewBigImage?h="+imageId+""+"&type="+1;
 		})
 		//查看详情
 		$('.latest_more').click(function() {
 			var colorId = $(this).attr('colorId');
-//			window.location.href = serverdomain+"colorDetails?h="+colorId+"";
-			window.location.href = serverdomain+"colorDetails.html?h="+colorId+"";
+			window.location.href = serverdomain+"/web/colorDetails?h="+colorId+"";
+//			window.location.href = serverdomain+"colorDetails.html?h="+colorId+"";
 		})
 			//供应商
 		$('.latest_company').click(function(){
 			var cpId = $(this).attr('companyId');
-//			window.location.href = serverdomain+"perCompanyColor?h="+cpId+"";
-			window.location.href = serverdomain+"perCompanyColor.html?h="+cpId+"";
+			window.location.href = serverdomain+"/web/perCompanyColor?h="+cpId+"";
+//			window.location.href = serverdomain+"perCompanyColor.html?h="+cpId+"";
 		})
 	}, function(msg) {
 		alert(msg.msg);

@@ -44,6 +44,7 @@ var cpId = "";
 function persubnavClick(type) {
 	var per_aside_subnav = $(".per_aside_subnav");
 	var triangle = $(".per_triangle");
+	per_aside_subnav.unbind('click');
 	per_aside_subnav.click(function() {
 		per_aside_subnav.removeClass("per_aside_subnav_active");
 		triangle.removeClass("triangle-right");
@@ -51,7 +52,7 @@ function persubnavClick(type) {
 		$(this).siblings(".per_triangle").addClass("triangle-right");
 		//组织参数
 		var t = $(this);
-		resetContent(t, '', type);
+		resetContent(t, '', type,type+1);
 	});
 }
 //最新花色 ====>更新右边的区域
@@ -146,14 +147,14 @@ function pageClick(thisJDom, pageNumber, name, type, imagetype) {
 			//查看大图
 		$('.latest_list_mouseover').click(function() {
 				var imageId = $(this).attr('colorId');
-				//window.location.href = serverdomain + "viewBigImage?h=" + imageId + ""+"&type="+imagetype;
-				window.location.href = serverdomain + "viewBigImage.html?h=" + imageId + "" + "&type=" + imagetype;
+				window.location.href = serverdomain + "/web/viewBigImage?h=" + imageId + ""+"&type="+imagetype;
+				//window.location.href = serverdomain + "viewBigImage.html?h=" + imageId + "" + "&type=" + imagetype;
 			})
 			//查看详情
 		$('.latest_more').click(function() {
 			var colorId = $(this).attr('colorId');
-			//window.location.href = serverdomain + "colorDetails?h=" + colorId + "";
-			window.location.href = serverdomain + "colorDetails.html?h=" + colorId + "";
+			window.location.href = serverdomain + "/web/colorDetails?h=" + colorId + "";
+			//window.location.href = serverdomain + "colorDetails.html?h=" + colorId + "";
 		})
 	}, function(msg) {
 		alert(msg.msg);
@@ -164,6 +165,7 @@ function changeContent(a) {
 	$('.per_title').removeClass('per_title_active');
 	//最新花色
 	if (a == 1) {
+		$('#perMsgArea').empty();
 		resetContent($('#first'), '', 0, 1);
 		persubnavClick(0);
 		$('.per_nav').show();
@@ -179,6 +181,7 @@ function changeContent(a) {
 	}
 	//经典花色
 	else if (a == 2) {
+		$('#perMsgArea').empty();
 		resetContent($('#first'), '', 1, 2);
 		persubnavClick(1);
 		$('.per_nav').show();
@@ -261,6 +264,7 @@ function ischecked() {
 			$('.per_content_main').hide();
 			$('.per_elecalbum_main').show();
 			$('.per_searchbox').hide();
+			$('#per_elecalbum_modal_numb').val(getCookie('phone'));
 			//
 			$('#per_elecalbum_applybtn').click(function() {
 					$('#per_elecalbum_modal').show();
@@ -268,10 +272,24 @@ function ischecked() {
 					$("#per_elecalbum_modal_submit").click(function() {
 						var _userid = getCookie('userId');
 						var _token = getCookie('token');
+						var companyname = $('#per_elecalbum_modal_companyname').val();
+						var applyReason = $('#per_elecalbum_modal_reason').val();
+						var applyNumber = $('#per_elecalbum_modal_numb').val();
+						if(!companyname||companyname=="请填写公司名称"){
+							alert('请填写公司名称!');
+							return;
+						}
+						if(!applyNumber){
+							alert('请填写您的联系方式!');
+							return;
+						}
 						var postparam = {
 							"userId": _userid,
 							"token": _token,
-							"companyId": cpId
+							"companyId": cpId,
+							"usercompanyname":companyname,
+							"userphone":applyNumber,
+							"applycontent":applyReason
 						}
 						postData("/web/decorative/apply", postparam, function(msg) {
 							if (msg.code == 1) {
@@ -381,7 +399,8 @@ function photoClick(thisJDom, pageNumber, searchcode) {
 			//查看大图
 		$('.photo_list_mouseover').click(function() {
 			var imageId = $(this).attr('colorId');
-			window.location.href = serverdomain + "viewBigImage.html?h=" + imageId + "" + "&type=" + 3;
+			//window.location.href = serverdomain + "viewBigImage.html?h=" + imageId + "" + "&type=" + 3;
+			window.location.href = serverdomain + "/web/viewBigImage.html?h=" + imageId + "" + "&type=" + 3;
 		})
 	}, function(msg) {
 		alert(msg.msg);
